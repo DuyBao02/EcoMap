@@ -1,0 +1,33 @@
+{% extends "layout.html" %} 
+{% block title %}{{ _('Map Detecting') }}{% endblock %} 
+
+{% block content %}
+
+  <div
+    class="justify-center text-4xl font-semibold flex dark:text-white items-center my-8"
+  >
+    {{ _('Detecting With Map') }}
+  </div>
+
+  {% include 'components/mapsteps.html' %}
+
+  <div class="mt-4 justify-center items-center flex">
+    <button
+      class="hover:-translate-y-1 hover:scale-110 duration-300 cursor-pointer bg-black text-white px-6 py-2 rounded-md shadow-md focus:outline-none hover:bg-slate-600 dark:bg-blue-500 dark:text-white text-white dark:hover:bg-blue-400"
+    >
+      {{ _('Take a photo') }}
+    </button>
+  </div>
+
+  <!-- Google Maps Iframe -->
+  <div class="flex justify-center items-center m-8">
+    <iframe
+      id="map-frame"
+      src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d3601.438058571869!2d105.76804037461584!3d10.029933690076948!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e1!3m2!1svi!2s!4v1728898686953!5m2!1svi!2s"
+      class="max-w-screen w-full h-screen border-0 rounded-md"
+      allowfullscreen=""
+      loading="lazy"
+      referrerpolicy="no-referrer-when-downgrade"
+    ></iframe>
+  </div>
+{% endblock %}

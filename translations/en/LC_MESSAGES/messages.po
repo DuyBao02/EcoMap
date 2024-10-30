@@ -1,0 +1,80 @@
+# English translations for PROJECT.
+# Copyright (C) 2024 ORGANIZATION
+# This file is distributed under the same license as the PROJECT project.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2024.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: PROJECT VERSION\n"
+"Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
+"POT-Creation-Date: 2024-10-15 00:09+0700\n"
+"PO-Revision-Date: 2024-10-15 00:10+0700\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language: en\n"
+"Language-Team: en <LL@li.org>\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.16.0\n"
+
+#: templates/contacts.html:24
+msgid "Can Tho University Zone II"
+msgstr "Can Tho University Zone II"
+
+#: templates/contacts.html:24
+msgid "Đ. 3/2, Xuan Khanh, Ninh Kieu, Can Tho"
+msgstr "Đ. 3/2, Xuan Khanh, Ninh Kieu, Can Tho"
+
+#: templates/contacts.html:30
+msgid "School of Information and Communication Technology"
+msgstr "School of Information and Communication Technology"
+
+#: templates/index.html:7
+msgid "Detecting With Image"
+msgstr "Detecting With Image"
+
+#: templates/index.html:31
+msgid "INPUT YOUR IMAGE"
+msgstr "INPUT YOUR IMAGE"
+
+#: templates/index.html:38
+msgid "Click Here"
+msgstr "Click Here"
+
+#: templates/index.html:53
+msgid "Submit"
+msgstr "Submit"
+
+#: templates/map.html:7
+msgid "Detecting With Map"
+msgstr "Detecting With Map"
+
+#: templates/map.html:16
+msgid "Take a photo"
+msgstr "Take a photo"
+
+#: templates/components/footer.html:7
+msgid "All Rights Reserved"
+msgstr "All Rights Reserved"
+
+#: templates/components/header.html:7
+msgid "Polygon Detecting"
+msgstr "Polygon Detecting"
+
+#: templates/components/nav.html:283
+msgid "Open main menu"
+msgstr "Open main menu"
+
+#: templates/components/nav.html:329
+msgid "Home"
+msgstr "Home"
+
+#: templates/components/nav.html:359
+msgid "Map"
+msgstr "Map"
+
+#: templates/components/nav.html:384
+msgid "Contacts"
+msgstr "Contacts"
+

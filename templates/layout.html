@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="{{ current_locale }}">
+  {% include 'components/header.html' %}
+
+  <body class="bg-white dark:bg-gray-900 flex flex-col min-h-screen">
+    <title>{% block title %}{{ _('Polygon Detecting') }}{% endblock %}</title>
+
+    {% include 'components/nav.html' %} 
+    
+    <main class="flex-grow">
+      {% block content %}
+      <!-- Nội dung sẽ được điền vào ở đây từ các file extend -->
+      {% endblock %}
+    </main>
+
+  </body>
+  {% include 'components/footer.html' %}
+</html>
