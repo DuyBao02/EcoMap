@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="{{ current_locale }}">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ _('Alert') }}</title>
+</head>
+<body>
+    <script>
+        // Hiển thị thông báo alert
+        alert("{{ alert_message }}");
+        
+        // Chuyển hướng đến trang khác
+        window.location.href = "{{ redirect_url }}";
+    </script>
+</body>
+</html>

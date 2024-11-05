@@ -7,11 +7,11 @@ document.getElementById("upload-form").addEventListener("submit", function(event
     event.preventDefault();
     var fileInput = document.getElementById("file-upload");
     if (fileInput.files.length === 0) {
-        alert('Please upload an image before submitting.');
+        alert(alertUploadImage);
         return;
     }
 
-    var confirmUpload = confirm('Do  you want to upload the image?');
+    var confirmUpload = confirm(confirmUploadImage);
 
     if (!confirmUpload) {
         return;
@@ -38,7 +38,7 @@ document.getElementById("upload-form").addEventListener("submit", function(event
         window.location.href = '/imagewasdetected';
     }).catch(error => {
         console.error('Error:', error);
-        alert('Something was wrong');
+        alert(alertSomethingWrong);
         submitButton.disabled = false;
         submitButton.innerHTML = submitButton.getAttribute("data-original-text");
     });

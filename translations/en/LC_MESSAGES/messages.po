@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-10-15 00:09+0700\n"
+"POT-Creation-Date: 2024-11-05 15:26+0700\n"
 "PO-Revision-Date: 2024-10-15 00:10+0700\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: en\n"
@@ -18,63 +18,132 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.16.0\n"
 
-#: templates/contacts.html:24
+#: app.py:130
+msgid "Please upload an image before submitting."
+msgstr "Please upload an image before submitting."
+
+#: app.py:131
+msgid "Do you want to upload the image?"
+msgstr "Do you want to upload the image?"
+
+#: app.py:132
+msgid "Something was wrong."
+msgstr "Something was wrong."
+
+#: app.py:200
+msgid "Image cannot be found"
+msgstr "Image cannot be found"
+
+#: app.py:212
+msgid "No masks detected, try again!"
+msgstr "No masks detected, try again!"
+
+#: templates/contacts.html:3
+msgid "Contact"
+msgstr "Contacts"
+
+#: templates/contacts.html:27
 msgid "Can Tho University Zone II"
 msgstr "Can Tho University Zone II"
 
-#: templates/contacts.html:24
+#: templates/contacts.html:27
 msgid "Đ. 3/2, Xuan Khanh, Ninh Kieu, Can Tho"
 msgstr "Đ. 3/2, Xuan Khanh, Ninh Kieu, Can Tho"
 
-#: templates/contacts.html:30
+#: templates/contacts.html:33
 msgid "School of Information and Communication Technology"
 msgstr "School of Information and Communication Technology"
 
-#: templates/index.html:7
-msgid "Detecting With Image"
-msgstr "Detecting With Image"
-
-#: templates/index.html:31
-msgid "INPUT YOUR IMAGE"
-msgstr "INPUT YOUR IMAGE"
-
-#: templates/index.html:38
-msgid "Click Here"
-msgstr "Click Here"
-
-#: templates/index.html:53
-msgid "Submit"
-msgstr "Submit"
-
-#: templates/map.html:7
-msgid "Detecting With Map"
-msgstr "Detecting With Map"
-
-#: templates/map.html:16
-msgid "Take a photo"
-msgstr "Take a photo"
-
-#: templates/components/footer.html:7
-msgid "All Rights Reserved"
-msgstr "All Rights Reserved"
-
-#: templates/components/header.html:7
+#: templates/layout.html:6
 msgid "Polygon Detecting"
 msgstr "Polygon Detecting"
 
-#: templates/components/nav.html:283
+#: templates/redirect_with_alert.html:5
+msgid "Alert"
+msgstr "Alert"
+
+#: templates/components/footer.html:5
+msgid "All Rights Reserved"
+msgstr "All Rights Reserved"
+
+#: templates/components/nav.html:67
 msgid "Open main menu"
 msgstr "Open main menu"
 
-#: templates/components/nav.html:329
+#: templates/components/nav.html:113
 msgid "Home"
 msgstr "Home"
 
-#: templates/components/nav.html:359
-msgid "Map"
-msgstr "Map"
-
-#: templates/components/nav.html:384
+#: templates/components/nav.html:138
 msgid "Contacts"
 msgstr "Contacts"
+
+#: templates/imgDetect/ImageWasDetected.html:3
+msgid "Polygon Detect Successful"
+msgstr "Polygon Detecting"
+
+#: templates/imgDetect/ImageWasDetected.html:9
+msgid "Image Has Been Recognized"
+msgstr "Image Has Been Recognized"
+
+#: templates/imgDetect/ImageWasDetected.html:33
+msgid "Download ZIP"
+msgstr "Download ZIP"
+
+#: templates/imgDetect/ImageWasDetected.html:40
+msgid "You can download 1 or more image"
+msgstr "You can download 1 or more image"
+
+#: templates/imgDetect/ImageWasDetected.html:60
+msgid "Number of detected images:"
+msgstr "Number of detected images:"
+
+#: templates/imgDetect/ImageWasDetected.html:81
+msgid "No detected images available"
+msgstr "No detected images available"
+
+#: templates/imgDetect/imgInput.html:3
+msgid "Input Image"
+msgstr "Input Image"
+
+#: templates/imgDetect/imgInput.html:10
+msgid "Detecting With Image"
+msgstr "Detecting With Image"
+
+#: templates/imgDetect/imgInput.html:26
+msgid "Enter a location"
+msgstr "Enter a location"
+
+#: templates/imgDetect/imgInput.html:33
+msgid "Search"
+msgstr "Search"
+
+#: templates/imgDetect/imgInput.html:71
+msgid "INPUT YOUR IMAGE"
+msgstr "INPUT YOUR IMAGE"
+
+#: templates/imgDetect/imgInput.html:85
+msgid "Click Here"
+msgstr "Click Here"
+
+#: templates/imgDetect/imgInput.html:106
+msgid "Upload another image"
+msgstr "Upload another image"
+
+#: templates/imgDetect/imgInput.html:117
+msgid "Loading..."
+msgstr "Loading..."
+
+#: templates/imgDetect/imgInput.html:119
+msgid "Submit"
+msgstr "Submit"
+
+#~ msgid "Detecting With Map"
+#~ msgstr "Detecting With Map"
+
+#~ msgid "Take a photo"
+#~ msgstr "Take a photo"
+
+#~ msgid "Map"
+#~ msgstr "Map"
 

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-10-17 15:52+0700\n"
+"POT-Creation-Date: 2024-11-05 15:26+0700\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -16,6 +16,26 @@ msgstr ""
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.16.0\n"
+
+#: app.py:130
+msgid "Please upload an image before submitting."
+msgstr ""
+
+#: app.py:131
+msgid "Do you want to upload the image?"
+msgstr ""
+
+#: app.py:132
+msgid "Something was wrong."
+msgstr ""
+
+#: app.py:200
+msgid "Image cannot be found"
+msgstr ""
+
+#: app.py:212
+msgid "No masks detected, try again!"
+msgstr ""
 
 #: templates/contacts.html:3
 msgid "Contact"
@@ -33,20 +53,16 @@ msgstr ""
 msgid "School of Information and Communication Technology"
 msgstr ""
 
-#: templates/layout.html:3
+#: templates/layout.html:6
 msgid "Polygon Detecting"
 msgstr ""
 
-#: templates/components/footer.html:8
+#: templates/redirect_with_alert.html:5
+msgid "Alert"
+msgstr ""
+
+#: templates/components/footer.html:5
 msgid "All Rights Reserved"
-msgstr ""
-
-#: templates/components/labelImg.html:5
-msgid "Detecting With Image"
-msgstr ""
-
-#: templates/components/labelMap.html:5
-msgid "Detecting With Map"
 msgstr ""
 
 #: templates/components/nav.html:67
@@ -57,67 +73,67 @@ msgstr ""
 msgid "Home"
 msgstr ""
 
-#: templates/components/nav.html:143
-msgid "Map"
-msgstr ""
-
-#: templates/components/nav.html:168
+#: templates/components/nav.html:138
 msgid "Contacts"
 msgstr ""
 
 #: templates/imgDetect/ImageWasDetected.html:3
-msgid "Image Successfully Detected"
+msgid "Polygon Detect Successful"
 msgstr ""
 
-#: templates/imgDetect/ImageWasDetected.html:11
-msgid "You can download 1 or more image"
+#: templates/imgDetect/ImageWasDetected.html:9
+msgid "Image Has Been Recognized"
 msgstr ""
 
-#: templates/imgDetect/ImageWasDetected.html:18
+#: templates/imgDetect/ImageWasDetected.html:33
 msgid "Download ZIP"
 msgstr ""
 
-#: templates/imgDetect/ImageWasDetected.html:48
+#: templates/imgDetect/ImageWasDetected.html:40
+msgid "You can download 1 or more image"
+msgstr ""
+
+#: templates/imgDetect/ImageWasDetected.html:60
+msgid "Number of detected images:"
+msgstr ""
+
+#: templates/imgDetect/ImageWasDetected.html:81
 msgid "No detected images available"
 msgstr ""
 
-#: templates/imgDetect/img.html:3
+#: templates/imgDetect/imgInput.html:3
 msgid "Input Image"
 msgstr ""
 
-#: templates/imgDetect/img.html:31
+#: templates/imgDetect/imgInput.html:10
+msgid "Detecting With Image"
+msgstr ""
+
+#: templates/imgDetect/imgInput.html:26
+msgid "Enter a location"
+msgstr ""
+
+#: templates/imgDetect/imgInput.html:33
+msgid "Search"
+msgstr ""
+
+#: templates/imgDetect/imgInput.html:71
 msgid "INPUT YOUR IMAGE"
 msgstr ""
 
-#: templates/imgDetect/img.html:45
+#: templates/imgDetect/imgInput.html:85
 msgid "Click Here"
 msgstr ""
 
-#: templates/imgDetect/img.html:65
+#: templates/imgDetect/imgInput.html:106
+msgid "Upload another image"
+msgstr ""
+
+#: templates/imgDetect/imgInput.html:117
 msgid "Loading..."
 msgstr ""
 
-#: templates/imgDetect/img.html:67
+#: templates/imgDetect/imgInput.html:119
 msgid "Submit"
-msgstr ""
-
-#: templates/imgDetect/no_masks_detected.html:2
-msgid "No Masks Detected"
-msgstr ""
-
-#: templates/imgDetect/no_masks_detected.html:5
-msgid "No masks were detected in the uploaded image"
-msgstr ""
-
-#: templates/imgDetect/no_masks_detected.html:6
-msgid "Go Back"
-msgstr ""
-
-#: templates/mapDetect/map.html:3
-msgid "Map Detecting"
-msgstr ""
-
-#: templates/mapDetect/map.html:14
-msgid "Take a photo"
 msgstr ""
 

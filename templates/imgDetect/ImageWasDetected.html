@@ -53,6 +53,13 @@
         </a>
       </div>
     </div>
+
+    <div
+      class="flex items-center justify-center my-4 text-xl font-semibold dark:text-white"
+    >
+      {{ _('Number of detected images:') }} {{ num_detected_images }}
+    </div>
+
     <div class="flex flex-wrap justify-center items-center mt-8 space-x-4">
       {% for image in detected_images[1:] %}
       <div
@@ -69,7 +76,10 @@
     {% endfor %}
   </div>
   {% else %}
-  <p>{{ _('No detected images available') }}</p>
+  <div
+    class="justify-center text-4xl font-semibold flex dark:text-white items-center my-8">
+    <p>{{ _('No detected images available') }}</p>
+  </div>
   {% endif %} 
   
 {% endblock %}

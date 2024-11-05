@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-10-15 00:09+0700\n"
+"POT-Creation-Date: 2024-11-05 15:26+0700\n"
 "PO-Revision-Date: 2024-10-15 00:10+0700\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: vi\n"
@@ -18,63 +18,132 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.16.0\n"
 
-#: templates/contacts.html:24
+#: app.py:130
+msgid "Please upload an image before submitting."
+msgstr "Vui lòng tải lên một hình ảnh trước khi gửi."
+
+#: app.py:131
+msgid "Do you want to upload the image?"
+msgstr "Bạn muốn tải ảnh lên không?"
+
+#: app.py:132
+msgid "Something was wrong."
+msgstr "Có gì đó không đúng."
+
+#: app.py:200
+msgid "Image cannot be found"
+msgstr "Hình ảnh không được tìm thấy"
+
+#: app.py:212
+msgid "No masks detected, try again!"
+msgstr "Không phát hiện thấy mặt nạ nào, hãy thử lại!"
+
+#: templates/contacts.html:3
+msgid "Contact"
+msgstr "Liên lạc"
+
+#: templates/contacts.html:27
 msgid "Can Tho University Zone II"
 msgstr "Trường Đại Học Cần Thơ Khu 2"
 
-#: templates/contacts.html:24
+#: templates/contacts.html:27
 msgid "Đ. 3/2, Xuan Khanh, Ninh Kieu, Can Tho"
 msgstr "Đ. 3/2, Xuân Khánh, Ninh Kiều, Cần Thơ"
 
-#: templates/contacts.html:30
+#: templates/contacts.html:33
 msgid "School of Information and Communication Technology"
 msgstr "Trường Công Nghệ Thông Tin Và Truyền Thông"
 
-#: templates/index.html:7
-msgid "Detecting With Image"
-msgstr "Phát Hiện Với Hình Ảnh"
-
-#: templates/index.html:31
-msgid "INPUT YOUR IMAGE"
-msgstr "ĐẶT ẢNH CỦA BẠN VÀO"
-
-#: templates/index.html:38
-msgid "Click Here"
-msgstr "Bấm Vào Đây"
-
-#: templates/index.html:53
-msgid "Submit"
-msgstr "Gửi"
-
-#: templates/map.html:7
-msgid "Detecting With Map"
-msgstr "Phát Hiện Với Bản Đồ"
-
-#: templates/map.html:16
-msgid "Take a photo"
-msgstr "Chụp ảnh"
-
-#: templates/components/footer.html:7
-msgid "All Rights Reserved"
-msgstr "Mọi bản quyền được bảo lưu"
-
-#: templates/components/header.html:7
+#: templates/layout.html:6
 msgid "Polygon Detecting"
 msgstr "Phát hiện đa giác"
 
-#: templates/components/nav.html:283
+#: templates/redirect_with_alert.html:5
+msgid "Alert"
+msgstr "Thông báo"
+
+#: templates/components/footer.html:5
+msgid "All Rights Reserved"
+msgstr "Mọi bản quyền được bảo lưu"
+
+#: templates/components/nav.html:67
 msgid "Open main menu"
 msgstr "Mở menu chính"
 
-#: templates/components/nav.html:329
+#: templates/components/nav.html:113
 msgid "Home"
 msgstr "Trang chủ"
 
-#: templates/components/nav.html:359
-msgid "Map"
-msgstr "Bản đồ"
-
-#: templates/components/nav.html:384
+#: templates/components/nav.html:138
 msgid "Contacts"
 msgstr "Liên lạc"
+
+#: templates/imgDetect/ImageWasDetected.html:3
+msgid "Polygon Detect Successful"
+msgstr "Phát hiện đa giác"
+
+#: templates/imgDetect/ImageWasDetected.html:9
+msgid "Image Has Been Recognized"
+msgstr "Hình ảnh đã được nhận dạng"
+
+#: templates/imgDetect/ImageWasDetected.html:33
+msgid "Download ZIP"
+msgstr "Tải ZIP"
+
+#: templates/imgDetect/ImageWasDetected.html:40
+msgid "You can download 1 or more image"
+msgstr "Bạn có thể tải 1 hoặc nhiều ảnh"
+
+#: templates/imgDetect/ImageWasDetected.html:60
+msgid "Number of detected images:"
+msgstr "Số lượng hình ảnh được phát hiện:"
+
+#: templates/imgDetect/ImageWasDetected.html:81
+msgid "No detected images available"
+msgstr "Không có hình ảnh nào được phát hiện"
+
+#: templates/imgDetect/imgInput.html:3
+msgid "Input Image"
+msgstr "Thêm Ảnh Đầu Vào"
+
+#: templates/imgDetect/imgInput.html:10
+msgid "Detecting With Image"
+msgstr "Phát Hiện Với Hình Ảnh"
+
+#: templates/imgDetect/imgInput.html:26
+msgid "Enter a location"
+msgstr "Nhập vị trí"
+
+#: templates/imgDetect/imgInput.html:33
+msgid "Search"
+msgstr "Tìm"
+
+#: templates/imgDetect/imgInput.html:71
+msgid "INPUT YOUR IMAGE"
+msgstr "ĐẶT ẢNH CỦA BẠN VÀO"
+
+#: templates/imgDetect/imgInput.html:85
+msgid "Click Here"
+msgstr "Bấm Vào Đây"
+
+#: templates/imgDetect/imgInput.html:106
+msgid "Upload another image"
+msgstr "Tải lên một ảnh khác"
+
+#: templates/imgDetect/imgInput.html:117
+msgid "Loading..."
+msgstr "Đang tải..."
+
+#: templates/imgDetect/imgInput.html:119
+msgid "Submit"
+msgstr "Gửi"
+
+#~ msgid "Detecting With Map"
+#~ msgstr "Phát Hiện Với Bản Đồ"
+
+#~ msgid "Take a photo"
+#~ msgstr "Chụp ảnh"
+
+#~ msgid "Map"
+#~ msgstr "Bản đồ"
 

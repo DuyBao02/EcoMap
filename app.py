@@ -55,7 +55,7 @@ app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 if not os.path.exists(app.config['UPLOAD_FOLDER']):
     os.makedirs(app.config['UPLOAD_FOLDER'])
 
-MAX_IMAGES = 20  # Giới hạn số ảnh
+MAX_IMAGES = 10  # Giới hạn số ảnh
 
 vi_tz = pytz.timezone('Asia/Ho_Chi_Minh') # Múi giờ Việt Nam (UTC+7)
 
@@ -100,6 +100,9 @@ def home():
         {'is_completed': False},  # Step 2 chưa hoàn thành
     ]
 
+    api_key = 'AIzaSyB6CXc1Kg_t8MHISZc7bhXNUXl57WGSbfo'
+    map_url = f"https://www.google.com/maps/embed/v1/view?key={api_key}&center=10.030145,105.771098&zoom=12&maptype=satellite"
+
     if request.method == "POST":
         file = request.files.get('file-upload')  # Lấy file từ form
 
@@ -123,8 +126,34 @@ def home():
 
             # Chuyển tiếp đến /ImageWasDetected với các biến cần thiết
             return redirect(url_for('ImageWasDetected'))
+        
+    alert_upload_image = gettext('Please upload an image before submitting.')
+    confirm_upload_image = gettext('Do you want to upload the image?')
+    alert_something_wrong = gettext('Something was wrong.')
 
-    return render_template("imgDetect/imgInput.html", imgsteps=imgsteps, latest_image=None, current_locale=get_locale())
+    return render_template("imgDetect/imgInput.html", 
+        alert_upload_image=alert_upload_image, 
+        confirm_upload_image=confirm_upload_image, 
+        alert_something_wrong=alert_something_wrong, 
+        map_url=map_url, 
+        imgsteps=imgsteps, 
+        latest_image=None, 
+        current_locale=get_locale())
+
+@app.route('/search-location', methods=['POST'])
+def search_location():
+    location = request.form.get('location')
+
+    # Tạo URL Google Maps tìm kiếm từ địa chỉ người dùng nhập
+    google_maps_url = f"https://www.google.com/maps/embed/v1/search?key=AIzaSyB6CXc1Kg_t8MHISZc7bhXNUXl57WGSbfo&q={location}&zoom=18&maptype=satellite"
+
+    # Chuyển hướng đến trang có bản đồ Google Maps đã nhúng
+    return redirect(url_for('map_view', url=google_maps_url, search="true"))
+
+@app.route('/map-view')
+def map_view():
+    url = request.args.get('url')
+    return render_template('imgDetect/imgInput.html', map_url=url)
 
 #--------------------------------------------------------------------------------------
 
@@ -168,7 +197,8 @@ def download_zip():
 def ImageWasDetected():
     latest_image = session.get('latest_image')
     if not latest_image:
-        return "<script>alert('Image cannot found'); window.location.href='/';</script>"
+        message = gettext('Image cannot be found')
+        return render_template('redirect_with_alert.html', alert_message=message, redirect_url='/')
     
     input_image_path = latest_image
     output_dir = os.path.join('static/imgDetected')
@@ -179,12 +209,14 @@ def ImageWasDetected():
     
     save_dir, detected = run_detection(input_image_path, output_dir)
     if not detected:
-        return "<script>alert('No masks detected, try again!'); window.location.href='/';</script>"
+        message = gettext('No masks detected, try again!')
+        return render_template('redirect_with_alert.html', alert_message=message, redirect_url='/')
     
     detected_images = [os.path.join(save_dir, img).replace('\\', '/') for img in os.listdir(save_dir) if img.endswith('.png')]
+    num_detected_images = len(detected_images[1:])
     imgsteps = [{'is_completed': True}, {'is_completed': True}]
     
-    return render_template("imgDetect/ImageWasDetected.html", detected_images=detected_images, imgsteps=imgsteps)
+    return render_template("imgDetect/ImageWasDetected.html", detected_images=detected_images, num_detected_images=num_detected_images, imgsteps=imgsteps)
 
 #------------------------------------------#####---------------------------------------#
 
@@ -192,31 +224,5 @@ def ImageWasDetected():
 def contacts():
     return render_template("contacts.html")
 
-@app.route("/map")
-def map():
-    return render_template('mapDetect/map.html')
-
 if __name__ == '__main__':
-	app.run(debug=True, port=9999)
-
-# @app.route("/map")
-# def map():
-#     # Default map URL for Can Tho
-#     map_url = "https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d3601.435709505139!2d105.77109809289283!3d10.030144987331482!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e1!3m2!1svi!2s!4v1728895692688!5m2!1svi!2s"
-#     return render_template('map.html', map_url=map_url)
-
-# @app.route('/search-location', methods=['POST'])
-# def search_location():
-#     location = request.form.get('location')
-#     # Tạo URL Google Maps tìm kiếm từ địa chỉ người dùng nhập
-#     google_maps_url = f"https://www.google.com/maps/search/?q={location}"
-    
-#     # Chuyển hướng đến trang có bản đồ Google Maps đã nhúng
-#     return redirect(url_for('map_view', url=google_maps_url))
-
-# @app.route('/map-view')
-# def map_view():
-#     url = request.args.get('url')
-#     return render_template('map.html', url=url)
-
-
+	app.run(debug=True)

@@ -12,6 +12,41 @@
 
   {% include 'components/imgsteps.html' %}
 
+  <div class="mt-4 justify-center items-center flex">
+    <form
+      id="location-form"
+      action="/search-location"
+      method="POST"
+      class="flex w-1/2"
+    >
+      <input
+        type="text"
+        name="location"
+        class="rounded-md border border-gray-300 rounded-l-md py-2 px-4 w-full focus:outline-none focus:ring-2 focus:ring-blue-500"
+        placeholder="{{ _('Enter a location') }}"
+        required
+      />
+      <button
+        type="submit"
+        class="ml-2 hover:-translate-y-1 hover:scale-110 duration-300 cursor-pointer bg-black text-white px-6 py-2 rounded-md shadow-md focus:outline-none hover:bg-slate-600 dark:bg-blue-500 dark:text-white text-white dark:hover:bg-blue-400"
+      >
+      {{ _('Search') }}
+      </button>
+    </form>
+  </div>
+  
+  <!-- Google Maps Iframe -->
+  <div class="flex justify-center items-center m-8">
+    <iframe
+      id="map-frame"
+      src="{{ map_url }}"
+      class="max-w-screen w-full h-screen border-0 rounded-md"
+      allowfullscreen=""
+      loading="lazy"
+      referrerpolicy="no-referrer-when-downgrade"
+    ></iframe>
+  </div>
+
   <form id="upload-form" method="POST" enctype="multipart/form-data">
     <div id="upload-section" class="flex justify-center items-center mt-8">
       <div
@@ -85,4 +120,11 @@
       </button>
     </div>
   </form>
+
+  <script>
+    const alertUploadImage = "{{ alert_upload_image }}";
+    const confirmUploadImage = "{{ confirm_upload_image }}";
+    const alertSomethingWrong = "{{ alert_something_wrong }}";
+  </script>
+  
 {% endblock %}

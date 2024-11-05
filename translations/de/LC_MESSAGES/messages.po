@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-10-15 00:09+0700\n"
+"POT-Creation-Date: 2024-11-05 15:26+0700\n"
 "PO-Revision-Date: 2024-10-15 01:48+0700\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: de\n"
@@ -18,62 +18,132 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.16.0\n"
 
-#: templates/contacts.html:24
+#: app.py:130
+msgid "Please upload an image before submitting."
+msgstr "Bitte laden Sie vor dem Absenden ein Bild hoch."
+
+#: app.py:131
+msgid "Do you want to upload the image?"
+msgstr "Möchten Sie das Bild hochladen?"
+
+#: app.py:132
+msgid "Something was wrong."
+msgstr "Irgendetwas stimmte nicht."
+
+#: app.py:200
+msgid "Image cannot be found"
+msgstr "Bild kann nicht gefunden werden"
+
+#: app.py:212
+msgid "No masks detected, try again!"
+msgstr "Keine Masken erkannt, versuchen Sie es erneut!"
+
+#: templates/contacts.html:3
+msgid "Contact"
+msgstr "Kontakte"
+
+#: templates/contacts.html:27
 msgid "Can Tho University Zone II"
 msgstr "Universität Can Tho, Zone II"
 
-#: templates/contacts.html:24
+#: templates/contacts.html:27
 msgid "Đ. 3/2, Xuan Khanh, Ninh Kieu, Can Tho"
 msgstr "Đ. 3/2, Xuan Khanh, Ninh Kieu, Can Tho"
 
-#: templates/contacts.html:30
+#: templates/contacts.html:33
 msgid "School of Information and Communication Technology"
 msgstr "Schule für Informations- und Kommunikationstechnologie"
 
-#: templates/index.html:7
-msgid "Detecting With Image"
-msgstr "Erkennung mit Bild"
-
-#: templates/index.html:31
-msgid "INPUT YOUR IMAGE"
-msgstr "LADEN SIE IHR BILD HOCH"
-
-#: templates/index.html:38
-msgid "Click Here"
-msgstr "Hier klicken"
-
-#: templates/index.html:53
-msgid "Submit"
-msgstr "Einreichen"
-
-#: templates/map.html:7
-msgid "Detecting With Map"
-msgstr "Erkennung mit Karte"
-
-#: templates/map.html:16
-msgid "Take a photo"
-msgstr "Foto aufnehmen"
-
-#: templates/components/footer.html:7
-msgid ". All Rights Reserved."
-msgstr ". Alle Rechte vorbehalten."
-
-#: templates/components/header.html:7
+#: templates/layout.html:6
 msgid "Polygon Detecting"
 msgstr "Polygon-Erkennung"
 
-#: templates/components/nav.html:283
+#: templates/redirect_with_alert.html:5
+msgid "Alert"
+msgstr "Benachrichtigung"
+
+#: templates/components/footer.html:5
+msgid "All Rights Reserved"
+msgstr ". Alle Rechte vorbehalten."
+
+#: templates/components/nav.html:67
 msgid "Open main menu"
 msgstr "Hauptmenü öffnen"
 
-#: templates/components/nav.html:329
+#: templates/components/nav.html:113
 msgid "Home"
 msgstr "Startseite"
 
-#: templates/components/nav.html:359
-msgid "Map"
-msgstr "Karte"
-
-#: templates/components/nav.html:384
+#: templates/components/nav.html:138
 msgid "Contacts"
 msgstr "Kontakte"
+
+#: templates/imgDetect/ImageWasDetected.html:3
+msgid "Polygon Detect Successful"
+msgstr "Polygon-Erkennung"
+
+#: templates/imgDetect/ImageWasDetected.html:9
+msgid "Image Has Been Recognized"
+msgstr "Bild wurde erkannt"
+
+#: templates/imgDetect/ImageWasDetected.html:33
+msgid "Download ZIP"
+msgstr "ZIP herunterladen"
+
+#: templates/imgDetect/ImageWasDetected.html:40
+msgid "You can download 1 or more image"
+msgstr "Sie können 1 oder mehrere Bilder herunterladen"
+
+#: templates/imgDetect/ImageWasDetected.html:60
+msgid "Number of detected images:"
+msgstr "Anzahl der erkannten Bilder:"
+
+#: templates/imgDetect/ImageWasDetected.html:81
+msgid "No detected images available"
+msgstr "Keine erkannten Bilder verfügbar"
+
+#: templates/imgDetect/imgInput.html:3
+msgid "Input Image"
+msgstr "Eingabebild"
+
+#: templates/imgDetect/imgInput.html:10
+msgid "Detecting With Image"
+msgstr "Erkennung mit Bild"
+
+#: templates/imgDetect/imgInput.html:26
+msgid "Enter a location"
+msgstr "Geben Sie einen Ort ein"
+
+#: templates/imgDetect/imgInput.html:33
+msgid "Search"
+msgstr "Suchen"
+
+#: templates/imgDetect/imgInput.html:71
+msgid "INPUT YOUR IMAGE"
+msgstr "LADEN SIE IHR BILD HOCH"
+
+#: templates/imgDetect/imgInput.html:85
+msgid "Click Here"
+msgstr "Hier klicken"
+
+#: templates/imgDetect/imgInput.html:106
+msgid "Upload another image"
+msgstr "Laden Sie ein weiteres Bild hoch"
+
+#: templates/imgDetect/imgInput.html:117
+msgid "Loading..."
+msgstr "Laden..."
+
+#: templates/imgDetect/imgInput.html:119
+msgid "Submit"
+msgstr "Einreichen"
+
+#~ msgid "Detecting With Map"
+#~ msgstr "Erkennung mit Karte"
+
+#~ msgid "Take a photo"
+#~ msgstr "Foto aufnehmen"
+
+#~ msgid "Map"
+#~ msgstr "Karte"
+
