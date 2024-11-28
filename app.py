@@ -1,9 +1,16 @@
-from flask import Flask, render_template, request, redirect, url_for, session, send_file
+from flask import Flask, render_template, request, redirect, url_for, session, send_file, jsonify
 from flask_babel import Babel, _, lazy_gettext as _l, gettext
-import os, glob, pytz, sys, zipfile, shutil
+import os, glob, pytz, sys, zipfile, shutil, tempfile
 from datetime import datetime
 
 app = Flask(__name__)
+
+# Định nghĩa filter 'zip'
+def jinja2_zip(*args, **kwargs):
+    return zip(*args, **kwargs)
+
+# Đăng ký filter vào Jinja2 environment
+app.jinja_env.filters['zip'] = jinja2_zip
 
 #------------------------------------------#####---------------------------------------#
 
@@ -48,40 +55,41 @@ def inject_locale():
 
 #------------------------------------------#####---------------------------------------#
 
-#Folder image config
-UPLOAD_FOLDER = 'static/uploadsImg/'
-app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
-
-if not os.path.exists(app.config['UPLOAD_FOLDER']):
-    os.makedirs(app.config['UPLOAD_FOLDER'])
-
-MAX_IMAGES = 10  # Giới hạn số ảnh
+MAX_IMAGES = 15  # Giới hạn số ảnh
 
 vi_tz = pytz.timezone('Asia/Ho_Chi_Minh') # Múi giờ Việt Nam (UTC+7)
 
 #--------------------------------------------------------------------------------------
 
-def get_sorted_images():
-    # Lấy danh sách tất cả file hình ảnh trong thư mục uploads và sắp xếp theo thời gian chỉnh sửa
-    image_files = glob.glob(os.path.join(app.config['UPLOAD_FOLDER'], '*'))
+def ensure_folder_exists(folder):
+    # Đảm bảo rằng thư mục tồn tại. Nếu không, tạo mới.
+    if not os.path.exists(folder):
+        os.makedirs(folder)
+
+def get_sorted_images(upload_folder):
+    # Lấy danh sách tất cả file trong thư mục
+    image_files = glob.glob(os.path.join(upload_folder, '*'))
     
-    # Sắp xếp ảnh theo thời gian chỉnh sửa (modified time) nhưng sử dụng múi giờ Việt Nam
-    image_files.sort(key=lambda x: datetime.fromtimestamp(os.path.getmtime(x), vi_tz), reverse=True)  # Sắp xếp theo thời gian chỉnh sửa giảm dần
+    # Sắp xếp theo thời gian chỉnh sửa (giảm dần) sử dụng múi giờ Việt Nam
+    image_files.sort(key=lambda x: datetime.fromtimestamp(os.path.getmtime(x), vi_tz), reverse=True)
     return image_files
 
-def cleanup_old_images():
-    # Nếu có quá MAX_IMAGES ảnh, xóa các ảnh cũ nhất
-    image_files = get_sorted_images()
+def cleanup_old_images(upload_folder):
+    # Lấy danh sách các file đã sắp xếp
+    image_files = get_sorted_images(upload_folder)
+    
+    # Nếu số file vượt quá `MAX_IMAGES`, xóa file cũ nhất
     if len(image_files) > MAX_IMAGES:
         for image_file in image_files[MAX_IMAGES:]:
-            os.remove(image_file)  # Xóa các file cũ ngoài giới hạn
+            os.remove(image_file)  # Xóa file
+
 
 # Hàm này lấy tên thư mục dựa trên tên ảnh đầu vào
 def get_folder_name(image_path):
     return os.path.splitext(os.path.basename(image_path))[0]
 
-# Xóa các folder cũ khi vượt quá 10
-def cleanup_old_folders(directory, max_folders=10):
+# Xóa các folder cũ khi vượt quá 15
+def cleanup_old_folders(directory, max_folders=15):
     folders = [os.path.join(directory, d) for d in os.listdir(directory) if os.path.isdir(os.path.join(directory, d))]
     if len(folders) > max_folders:
         # Sắp xếp các thư mục theo thời gian tạo
@@ -95,67 +103,122 @@ def cleanup_old_folders(directory, max_folders=10):
 
 @app.route("/", methods=["GET", "POST"])
 def home():
-    imgsteps = [
+    mapsteps = [
         {'is_completed': False},  # Step 1 chưa hoàn thành
         {'is_completed': False},  # Step 2 chưa hoàn thành
     ]
 
-    api_key = 'AIzaSyB6CXc1Kg_t8MHISZc7bhXNUXl57WGSbfo'
-    map_url = f"https://www.google.com/maps/embed/v1/view?key={api_key}&center=10.030145,105.771098&zoom=12&maptype=satellite"
+    # Cấu hình thư mục lưu ảnh
+    UPLOAD_FOLDER = "static/map/uploadsMap"
+    ZIP_FOLDER = "static/map/mapDetected"
 
     if request.method == "POST":
-        file = request.files.get('file-upload')  # Lấy file từ form
+        file = request.files.get('map-file-upload')  # Lấy file từ form
 
         if file:
             # Lưu file vào thư mục uploads
-            filename = os.path.join(app.config['UPLOAD_FOLDER'], file.filename)
+            filename = os.path.join(UPLOAD_FOLDER, file.filename)
             file.save(filename)
 
             # Xóa các ảnh cũ nếu quá số lượng
-            cleanup_old_images()
+            cleanup_old_images(UPLOAD_FOLDER)
 
             # Đánh dấu bước 1 đã hoàn thành
-            imgsteps[0]['is_completed'] = True
+            mapsteps[0]['is_completed'] = True
 
             # Lấy hình ảnh mới nhất
-            image_files = get_sorted_images()
-            latest_image = image_files[0] if image_files else None
+            image_files = get_sorted_images(UPLOAD_FOLDER)
+            map_latest_image = image_files[0] if image_files else None
 
             # Lưu vào session
-            session['latest_image'] = latest_image
+            session['map_latest_image'] = map_latest_image
+            session['ZIP_FOLDER'] = ZIP_FOLDER
 
-            # Chuyển tiếp đến /ImageWasDetected với các biến cần thiết
-            return redirect(url_for('ImageWasDetected'))
-        
+            # Chuyển tiếp đến /mapwasdetected với các biến cần thiết
+            return redirect(url_for('MapWasDetected'))
+
+    # Lưu trạng thái bước vào session
+    session['mapsteps'] = mapsteps
+
+    # Cấu hình Google Maps
+    api_key = "AIzaSyAluf1EJWlM1Uz7XWKSy8F7BJJnmu7Ox3Y"
+    map_url = f"https://www.google.com/maps/embed/v1/view?key={api_key}&center=10.030145,105.771098&zoom=12&maptype=satellite"
+
     alert_upload_image = gettext('Please upload an image before submitting.')
     confirm_upload_image = gettext('Do you want to upload the image?')
     alert_something_wrong = gettext('Something was wrong.')
 
-    return render_template("imgDetect/imgInput.html", 
+    return render_template(
+        "mapDetect/mapInput.html",
+        map_url=map_url,
+        mapsteps=mapsteps,
         alert_upload_image=alert_upload_image, 
         confirm_upload_image=confirm_upload_image, 
         alert_something_wrong=alert_something_wrong, 
-        map_url=map_url, 
-        imgsteps=imgsteps, 
-        latest_image=None, 
-        current_locale=get_locale())
+        map_latest_image=None,
+        ZIP_FOLDER=None,
+        current_locale=get_locale()
+    )
 
 @app.route('/search-location', methods=['POST'])
 def search_location():
     location = request.form.get('location')
-
+    api_key = "AIzaSyAluf1EJWlM1Uz7XWKSy8F7BJJnmu7Ox3Y"
     # Tạo URL Google Maps tìm kiếm từ địa chỉ người dùng nhập
-    google_maps_url = f"https://www.google.com/maps/embed/v1/search?key=AIzaSyB6CXc1Kg_t8MHISZc7bhXNUXl57WGSbfo&q={location}&zoom=18&maptype=satellite"
+    google_maps_url = f"https://www.google.com/maps/embed/v1/search?key={api_key}&q={location}&zoom=12&maptype=satellite"
 
     # Chuyển hướng đến trang có bản đồ Google Maps đã nhúng
     return redirect(url_for('map_view', url=google_maps_url, search="true"))
 
 @app.route('/map-view')
 def map_view():
+    mapsteps = session.get('mapsteps')
     url = request.args.get('url')
-    return render_template('imgDetect/imgInput.html', map_url=url)
+    return render_template("mapDetect/mapInput.html", map_url=url, mapsteps=mapsteps)
 
-#--------------------------------------------------------------------------------------
+@app.route("/mapwasdetected", methods=["GET"])
+def MapWasDetected():
+    map_latest_image = session.get('map_latest_image')
+    if not map_latest_image:
+        message = gettext('Image cannot be found')
+        return render_template('redirect_with_alert.html', alert_message=message, redirect_url='/')
+    
+    input_image_path = map_latest_image
+    output_dir = os.path.join('static/map/mapDetected')
+    cleanup_old_folders(output_dir)
+    
+    if not os.path.exists(output_dir):
+        os.makedirs(output_dir)
+    
+    save_dir, detected, percentages, areas, total_area, total_percentage, original_area = run_detection(input_image_path, output_dir)
+    
+    if not detected:
+        message = gettext('No masks detected, try again!')
+        return render_template('redirect_with_alert.html', alert_message=message, redirect_url='/')
+    
+    detected_images = [os.path.join(save_dir, img).replace('\\', '/') for img in os.listdir(save_dir) if img.endswith('.png')]
+    
+    # Tách ảnh gốc và các ảnh polygon
+    original_image = detected_images[0] if detected_images else None
+    polygon_images = detected_images[1:]  # Các ảnh polygon sau ảnh gốc
+
+    # Đảm bảo tỷ lệ phần trăm chỉ áp dụng cho các polygon
+    polygon_data = list(zip(polygon_images, percentages, areas))  # Kết hợp ảnh, tỷ lệ phần trăm và diện tích
+
+    mapsteps = [{'is_completed': True}, {'is_completed': True}]
+    
+    return render_template("mapDetect/MapWasDetected.html",
+                            detected_images=detected_images,
+                            num_detected_images=len(polygon_images),  # Số lượng polygon
+                            original_image=original_image,  # Ảnh gốc
+                            polygon_data=polygon_data,  # Danh sách tuple (ảnh polygon, %)
+                            total_area=total_area,
+                            total_percentage=total_percentage,
+                            original_area=original_area,
+                            mapsteps=mapsteps,
+                            current_locale=get_locale())
+
+#------------------------------------------#####---------------------------------------#
 
 # Thêm đường dẫn của thư mục model vào sys.path
 sys.path.append(os.path.join(os.path.dirname(__file__), 'model'))
@@ -170,59 +233,74 @@ except ModuleNotFoundError:
 @app.route("/download_zip")
 def download_zip():
     # Lấy từ session
-    latest_image = session.get('latest_image')
-    
-    if not latest_image:
+    map_latest_image = session.get('map_latest_image')
+    ZIP_FOLDER = session.get('ZIP_FOLDER')
+
+    if not map_latest_image:
         return "No image found"
 
     # Đường dẫn thư mục lưu ảnh đã detect
-    folder_name = get_folder_name(latest_image)
-    folder_path = os.path.join('static/imgDetected', folder_name)
-    
-    # Tên tập tin .zip
-    zip_filename = f"{folder_name}.zip"
-    
-    # Tạo tập tin .zip
-    with zipfile.ZipFile(zip_filename, 'w') as zipf:
-        for root, dirs, files in os.walk(folder_path):
-            for file in files:
-                zipf.write(os.path.join(root, file), os.path.relpath(os.path.join(root, file), folder_path))
+    folder_name = get_folder_name(map_latest_image)
+    folder_path = os.path.join(ZIP_FOLDER, folder_name)
 
-    # Gửi tập tin .zip cho client
-    return send_file(zip_filename, as_attachment=True)
+    # Kiểm tra thư mục tồn tại
+    if not os.path.exists(folder_path):
+        return f"Folder {folder_path} does not exist"
 
-#--------------------------------------------------------------------------------------
+    # Tạo file ZIP tạm thời
+    with tempfile.NamedTemporaryFile(delete=False, suffix=".zip") as temp_zip:
+        with zipfile.ZipFile(temp_zip.name, 'w') as zipf:
+            for root, dirs, files in os.walk(folder_path):
+                for file in files:
+                    file_path = os.path.join(root, file)
+                    arcname = os.path.relpath(file_path, folder_path)
+                    zipf.write(file_path, arcname)
 
-@app.route("/imagewasdetected", methods=["GET"])
-def ImageWasDetected():
-    latest_image = session.get('latest_image')
-    if not latest_image:
-        message = gettext('Image cannot be found')
-        return render_template('redirect_with_alert.html', alert_message=message, redirect_url='/')
-    
-    input_image_path = latest_image
-    output_dir = os.path.join('static/imgDetected')
-    cleanup_old_folders(output_dir)
-    
-    if not os.path.exists(output_dir):
-        os.makedirs(output_dir)
-    
-    save_dir, detected = run_detection(input_image_path, output_dir)
-    if not detected:
-        message = gettext('No masks detected, try again!')
-        return render_template('redirect_with_alert.html', alert_message=message, redirect_url='/')
-    
-    detected_images = [os.path.join(save_dir, img).replace('\\', '/') for img in os.listdir(save_dir) if img.endswith('.png')]
-    num_detected_images = len(detected_images[1:])
-    imgsteps = [{'is_completed': True}, {'is_completed': True}]
-    
-    return render_template("imgDetect/ImageWasDetected.html", detected_images=detected_images, num_detected_images=num_detected_images, imgsteps=imgsteps)
+        temp_zip_path = temp_zip.name  # Lưu đường dẫn file ZIP tạm thời
+
+    # Gửi file ZIP cho client
+    response = send_file(temp_zip_path, as_attachment=True)
+
+    # Xóa file ZIP tạm thời sau khi gửi
+    @response.call_on_close
+    def cleanup_temp_file():
+        try:
+            os.remove(temp_zip_path)
+        except OSError as e:
+            print(f"Error deleting temporary file: {e}")
+
+    return response
+#------------------------------------------#####---------------------------------------#
+
+@app.route("/chatwithbot")
+def chatwithbot():
+    return render_template("otherpages/qawb.html")
+
+@app.route("/webhook", methods=["POST"])
+def webhook():
+    user_message = request.json.get("message")
+    # Logic xử lý chatbot tại đây
+    bot_response = process_message(user_message)
+    return jsonify({"response": bot_response})
+
+def process_message(message):
+    # Đây là logic xử lý tin nhắn (thay thế bằng AI hoặc rule-based bot)
+    if "hello" in message.lower():
+        return "Hi! How can I help you today?"
+    elif "how are you" in message.lower():
+        return "I'm just a bot, but I'm doing fine! How about you?"
+    else:
+        return "Sorry, I didn't understand that."
 
 #------------------------------------------#####---------------------------------------#
 
 @app.route("/contacts")
 def contacts():
-    return render_template("contacts.html")
+    return render_template("otherpages/contacts.html")
+
+@app.errorhandler(404)
+def page_not_found(e): 
+    return render_template('404.html'), 404
 
 if __name__ == '__main__':
 	app.run(debug=True)

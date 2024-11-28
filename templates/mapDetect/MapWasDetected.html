@@ -1,0 +1,74 @@
+{% extends "layout.html" %}
+
+{% block title %}{{ _('Polygon Detect Successful') }}{% endblock %}
+
+{% block content %}
+  <div class="justify-center text-4xl font-semibold flex dark:text-white items-center my-8">
+    {{ _('Image Has Been Recognized') }}
+  </div>
+  {% include 'components/mapsteps.html' %}
+
+  {% if detected_images %}
+
+  <div
+    class="flex items-center justify-center my-2 text-sm font-semibold dark:text-white"
+  >
+    {{ _('You can download 1 or more image') }}
+  </div>
+
+  <div class="items-center justify-center mt-8 flex">
+    <table class="max-w-screen-xl bg-gray-200 dark:bg-gray-800 border border-gray-300 dark:border-gray-700 rounded-lg">
+      <thead>
+        <tr>
+          <th class="text-center border-b dark:border-gray-700 px-3 py-2 dark:text-white">{{ _('Original Image') }}</th>
+          <th class="text-center border-b dark:border-gray-700 px-3 py-2 dark:text-white">{{ _('Detected Polygons') }} (%)</th>
+          <th class="text-center border-b dark:border-gray-700 px-3 py-2 dark:text-white"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="border-b dark:border-gray-700 px-3 py-2 text-left">
+            <a href="{{ original_image }}" download>
+              <img src="{{ original_image }}" alt="Original Image" class="w-10/12 h-auto rounded-md hover:-translate-y-1 hover:scale-110 duration-300 cursor-pointer" />
+            </a>
+            <div class="mt-2 font-semibold dark:text-white">
+              <p>{{ _('Original Area:') }} {{ original_area }} px²</p>
+              <p>{{ _('Number of detected images:') }} {{ num_detected_images }}</p>
+              <p>{{ _('Total Area of Polygons:') }} {{ total_area }} px²</p>
+              <p>{{ _('Total Percentage of Polygons:') }} {{ total_percentage }}%</p>
+            </div>
+          </td>
+          <td class="border-b dark:border-gray-700 px-3 py-2 text-left w-7/12">
+            <div class="flex flex-wrap">
+              {% for image, percentage, area in polygon_data %}
+              <div class="w-1/6">
+                <a href="{{ image }}" download>
+                  <img src="{{ image }}" alt="Detected Polygon {{ loop.index }}" class="w-full h-auto rounded-md max-w-[100px] max-h-[100px] hover:-translate-y-1 hover:scale-110 duration-300 cursor-pointer" />
+                </a>
+                <p class="dark:text-white text-center">{{ area }} px²</p>
+                <p class="dark:text-white text-center">{{ percentage }}%</p>
+              </div>
+              {% endfor %}
+            </div>
+          </td>
+          <td class="border-b dark:border-gray-700 px-3 py-2 text-left">
+            <a href="{{ url_for('download_zip') }}" 
+              class="inline-flex items-center px-4 py-2 text-sm font-medium text-gray-900 bg-white border border-gray-200 rounded-lg hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:outline-none focus:ring-gray-100 focus:text-blue-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700 dark:focus:ring-gray-700 hover:-translate-y-1 hover:scale-110 duration-300 cursor-pointer">
+              <svg class="w-3.5 h-3.5 me-2.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
+                <path d="M14.707 7.793a1 1 0 0 0-1.414 0L11 10.086V1.5a1 1 0 0 0-2 0v8.586L6.707 7.793a1 1 0 1 0-1.414 1.414l4 4a1 1 0 0 0 1.416 0l4-4a1 1 0 0 0-.002-1.414Z"/>
+                <path d="M18 12h-2.55l-2.975 2.975a3.5 3.5 0 0 1-4.95 0L4.55 12H2a2 2 0 0 0-2 2v4a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-4a2 2 0 0 0-2-2Zm-3 5a1 1 0 1 1 0-2 1 1 0 0 1 0 2Z"/>
+              </svg>
+              {{ _('Download ZIP') }}
+            </a>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  {% else %}
+  <div class="justify-center text-4xl font-semibold flex dark:text-white items-center my-8">
+    <p>{{ _('No detected images available') }}</p>
+  </div>
+  {% endif %}
+{% endblock %}

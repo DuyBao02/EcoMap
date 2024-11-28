@@ -1,0 +1,82 @@
+{% extends "layout.html" %}
+
+{% block title %}{{ _('Q&A') }}{% endblock %}
+
+{% block content %}
+
+<div class="flex justify-center items-center mt-8">
+    <div class="w-full max-w-3xl bg-white shadow-lg rounded-lg overflow-hidden">
+        <div class="bg-blue-500 text-white p-4 text-center">
+            <h1 class="text-lg font-bold">Chatbot</h1>
+        </div>
+        <div id="chat-messages" class="p-4 h-[350px] overflow-y-auto bg-gray-100 dark:bg-white">
+            <!-- Messages will be appended here -->
+        </div>
+        <div class="p-4 flex items-center bg-gray-200 border-t">
+            <input id="user-input" type="text" class="flex-1 border rounded-lg p-2 focus:outline-none" placeholder="Type a message...">
+            <button id="send-button" class="ml-2 bg-blue-500 text-white rounded-lg px-4 py-2 hover:bg-blue-600">
+                {{ _('Send') }}
+            </button>
+        </div>
+    </div>
+</div>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        const chatMessages = document.getElementById('chat-messages');
+        const userInput = document.getElementById('user-input');
+        const sendButton = document.getElementById('send-button');
+
+        // Function to append a message to the chat
+        function appendMessage(sender, message) {
+            const messageElement = document.createElement('div');
+            messageElement.className = sender === 'You' ? 'text-right' : 'text-left';
+            messageElement.innerHTML = `
+                <div class="${sender === 'You' ? 'bg-blue-500 text-white' : 'bg-gray-300'} inline-block rounded-lg px-3 py-2 m-1">
+                    <strong>${sender}:</strong> ${message}
+                </div>
+            `;
+            chatMessages.appendChild(messageElement);
+            chatMessages.scrollTop = chatMessages.scrollHeight; // Auto-scroll to the bottom
+        }
+
+        // Function to send a message to the backend
+        function sendMessage(message) {
+            fetch('/webhook', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ message }),
+            })
+            .then(response => response.json())
+            .then(data => {
+                const botResponse = data.response;
+                appendMessage('John', botResponse);
+            })
+            .catch(error => {
+                console.error('Error:', error);
+            });
+        }
+
+        // Event listener for sending messages
+        sendButton.addEventListener('click', function() {
+            const userMessage = userInput.value.trim();
+            if (userMessage !== '') {
+                appendMessage('You', userMessage);
+                sendMessage(userMessage);
+                userInput.value = ''; // Clear the input
+            }
+        });
+
+        // Pressing Enter to send the message
+        userInput.addEventListener('keypress', function(event) {
+            if (event.key === 'Enter') {
+                sendButton.click();
+            }
+        });
+    });
+    
+</script>
+
+{% endblock %}
