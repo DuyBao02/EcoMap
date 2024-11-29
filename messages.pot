@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-11-28 15:17+0700\n"
+"POT-Creation-Date: 2024-11-30 00:21+0700\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -46,9 +46,7 @@ msgid "Something's missing."
 msgstr ""
 
 #: templates/404.html:20
-msgid ""
-"Sorry, we can't find that page. You'll find lots to explore on the home "
-"page."
+msgid "Sorry, we can't find that page. You'll find lots to explore on the home page."
 msgstr ""
 
 #: templates/404.html:25
@@ -59,128 +57,60 @@ msgstr ""
 msgid "All Rights Reserved"
 msgstr ""
 
-#: templates/components/header.html:6
-msgid "Polygon Detecting"
-msgstr ""
-
-#: templates/components/nav.html:63
-msgid "Open main menu"
-msgstr ""
-
-#: templates/components/nav.html:86
+#: templates/components/nav.html:87
 msgid "Home"
 msgstr ""
 
-#: templates/components/nav.html:90 templates/otherpages/qawb.html:3
-msgid "Q&A"
-msgstr ""
-
-#: templates/components/nav.html:94
+#: templates/components/nav.html:99
 msgid "Contacts"
 msgstr ""
 
-#: templates/imgDetect/ImageWasDetected.html:3
 #: templates/mapDetect/MapWasDetected.html:3
 msgid "Polygon Detect Successful"
 msgstr ""
 
-#: templates/imgDetect/ImageWasDetected.html:7
+#: templates/mapDetect/MapWasDetected.html:7
 msgid "Image Has Been Recognized"
 msgstr ""
 
-#: templates/imgDetect/ImageWasDetected.html:16
-#: templates/mapDetect/MapWasDetected.html:41
+#: templates/mapDetect/MapWasDetected.html:16
 msgid "You can download 1 or more image"
 msgstr ""
 
-#: templates/imgDetect/ImageWasDetected.html:24
+#: templates/mapDetect/MapWasDetected.html:23
 msgid "Original Image"
 msgstr ""
 
-#: templates/imgDetect/ImageWasDetected.html:25
+#: templates/mapDetect/MapWasDetected.html:24
 msgid "Detected Polygons"
 msgstr ""
 
-#: templates/imgDetect/ImageWasDetected.html:37
-#: templates/mapDetect/MapWasDetected.html:64
+#: templates/mapDetect/MapWasDetected.html:35
 msgid "Original Area:"
 msgstr ""
 
-#: templates/imgDetect/ImageWasDetected.html:38
-#: templates/mapDetect/MapWasDetected.html:65
+#: templates/mapDetect/MapWasDetected.html:36
 msgid "Number of detected images:"
 msgstr ""
 
-#: templates/imgDetect/ImageWasDetected.html:39
-#: templates/mapDetect/MapWasDetected.html:66
+#: templates/mapDetect/MapWasDetected.html:37
 msgid "Total Area of Polygons:"
 msgstr ""
 
-#: templates/imgDetect/ImageWasDetected.html:40
-#: templates/mapDetect/MapWasDetected.html:67
+#: templates/mapDetect/MapWasDetected.html:38
 msgid "Total Percentage of Polygons:"
 msgstr ""
 
-#: templates/imgDetect/ImageWasDetected.html:63
-#: templates/mapDetect/MapWasDetected.html:34
+#: templates/mapDetect/MapWasDetected.html:61
 msgid "Download ZIP"
 msgstr ""
 
-#: templates/imgDetect/ImageWasDetected.html:73
-#: templates/mapDetect/MapWasDetected.html:96
+#: templates/mapDetect/MapWasDetected.html:71
 msgid "No detected images available"
 msgstr ""
 
-#: templates/imgDetect/imgInput.html:3
-msgid "Input Image"
-msgstr ""
-
-#: templates/imgDetect/imgInput.html:10
-msgid "Detecting With Image"
-msgstr ""
-
-#: templates/imgDetect/imgInput.html:42 templates/mapDetect/mapInput.html:77
-msgid "INPUT YOUR IMAGE"
-msgstr ""
-
-#: templates/imgDetect/imgInput.html:49 templates/mapDetect/mapInput.html:91
-msgid "Click Here"
-msgstr ""
-
-#: templates/imgDetect/imgInput.html:54 templates/mapDetect/mapInput.html:96
-msgid "You can also paste an image from your clipboard!"
-msgstr ""
-
-#: templates/imgDetect/imgInput.html:76 templates/mapDetect/mapInput.html:118
-msgid "Upload another image"
-msgstr ""
-
-#: templates/imgDetect/imgInput.html:87 templates/mapDetect/mapInput.html:129
-msgid "Loading..."
-msgstr ""
-
-#: templates/imgDetect/imgInput.html:89 templates/mapDetect/mapInput.html:131
-msgid "Submit"
-msgstr ""
-
-#: templates/mapDetect/MapWasDetected.html:10
-msgid "Map Has Been Recognized"
-msgstr ""
-
-#: templates/mapDetect/MapWasDetected.html:56
-msgid "Original Image (Detected)"
-msgstr ""
-
-#: templates/mapDetect/MapWasDetected.html:84
-msgid "Percentage:"
-msgstr ""
-
-#: templates/mapDetect/MapWasDetected.html:87
-msgid "Area:"
-msgstr ""
-
 #: templates/mapDetect/mapInput.html:3
-msgid "Map Detecting"
+msgid "Detect polygons on map"
 msgstr ""
 
 #: templates/mapDetect/mapInput.html:10
@@ -193,6 +123,30 @@ msgstr ""
 
 #: templates/mapDetect/mapInput.html:34
 msgid "Search"
+msgstr ""
+
+#: templates/mapDetect/mapInput.html:77
+msgid "INPUT YOUR IMAGE"
+msgstr ""
+
+#: templates/mapDetect/mapInput.html:91
+msgid "Click Here"
+msgstr ""
+
+#: templates/mapDetect/mapInput.html:96
+msgid "You can paste an image from your clipboard!"
+msgstr ""
+
+#: templates/mapDetect/mapInput.html:118
+msgid "Upload another image"
+msgstr ""
+
+#: templates/mapDetect/mapInput.html:129
+msgid "Loading..."
+msgstr ""
+
+#: templates/mapDetect/mapInput.html:131
+msgid "Submit"
 msgstr ""
 
 #: templates/otherpages/contacts.html:3
@@ -211,7 +165,15 @@ msgstr ""
 msgid "School of Information and Communication Technology"
 msgstr ""
 
-#: templates/otherpages/qawb.html:18
+#: templates/otherpages/qawb.html:10
+msgid "Vietnamese Chatbot supports Can Tho location"
+msgstr ""
+
+#: templates/otherpages/qawb.html:16
+msgid "Type a message..."
+msgstr ""
+
+#: templates/otherpages/qawb.html:23
 msgid "Send"
 msgstr ""
 

@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, redirect, url_for, session, send_file, jsonify
+from flask import Flask, render_template, request, redirect, url_for, session, send_file, jsonify, send_from_directory
 from flask_babel import Babel, _, lazy_gettext as _l, gettext
 import os, glob, pytz, sys, zipfile, shutil, tempfile
 from datetime import datetime
@@ -17,7 +17,7 @@ app.jinja_env.filters['zip'] = jinja2_zip
 #Language config
 babel = Babel(app)
 app.config['SECRET_KEY'] = '604ab4ed4ab64b1b19449696'
-app.config['BABEL_DEFAULT_LOCALE'] = 'en'
+app.config['BABEL_DEFAULT_LOCALE'] = 'vi'
 app.config['BABEL_TRANSLATION_DIRECTORIES'] = './translations'
 
 #--------------------------------------------------------------------------------------
@@ -33,8 +33,8 @@ def get_locale():
     # Nếu không có ngôn ngữ trong session, trả về ngôn ngữ mặc định là 'en'
     elif 'lang' in session:
         return session['lang']
-    # Nếu không có ngôn ngữ trong session, trả về ngôn ngữ mặc định là 'en'
-    return 'en'
+    # Nếu không có ngôn ngữ trong session, trả về ngôn ngữ mặc định là 'vi'
+    return 'vi'
 
 babel = Babel(app, locale_selector=get_locale)
 
@@ -141,7 +141,7 @@ def home():
     session['mapsteps'] = mapsteps
 
     # Cấu hình Google Maps
-    api_key = "AIzaSyAluf1EJWlM1Uz7XWKSy8F7BJJnmu7Ox3Y"
+    api_key = ""
     map_url = f"https://www.google.com/maps/embed/v1/view?key={api_key}&center=10.030145,105.771098&zoom=12&maptype=satellite"
 
     alert_upload_image = gettext('Please upload an image before submitting.')
@@ -163,7 +163,7 @@ def home():
 @app.route('/search-location', methods=['POST'])
 def search_location():
     location = request.form.get('location')
-    api_key = "AIzaSyAluf1EJWlM1Uz7XWKSy8F7BJJnmu7Ox3Y"
+    api_key = ""
     # Tạo URL Google Maps tìm kiếm từ địa chỉ người dùng nhập
     google_maps_url = f"https://www.google.com/maps/embed/v1/search?key={api_key}&q={location}&zoom=12&maptype=satellite"
 
@@ -272,6 +272,18 @@ def download_zip():
     return response
 #------------------------------------------#####---------------------------------------#
 
+from chatbot.germini import RAG
+
+# Tạo một đối tượng RAG 
+excel_file = "chatbot/Don_vi_Can_Tho.xlsx"
+sheet_name = "DonviCanTho"
+llmApiKey = ""
+rag = RAG(excel_file, sheet_name, llmApiKey)
+
+@app.route("/pictures/<path:filename>")
+def serve_pictures(filename):
+    return send_from_directory("chatbot/pictures", filename)
+
 @app.route("/chatwithbot")
 def chatwithbot():
     return render_template("otherpages/qawb.html")
@@ -279,18 +291,106 @@ def chatwithbot():
 @app.route("/webhook", methods=["POST"])
 def webhook():
     user_message = request.json.get("message")
-    # Logic xử lý chatbot tại đây
-    bot_response = process_message(user_message)
-    return jsonify({"response": bot_response})
+    if not user_message:
+        return jsonify({"response": "No message received."})
+    
+    source_information = rag.enhance_prompt(user_message)
+    combined_information = f"Hãy trở thành chuyên gia thông tin về các đơn vị hành chính ở Cần Thơ. \
+        Câu hỏi của người dùng: {user_message}\nTrả lời câu hỏi dựa vào các thông tin dưới đây: {source_information}. \
+        Nếu {user_message} liên quan đến mô tả, tóm tắt sơ lược hoặc lấy thông tin cơ bản thì lấy cột mo_ta ứng với đơn vị hành chính tìm được để trả lời.\
+        Nếu {user_message} liên quan đến diện tích thì đơn vị là (km\u00B2), \
+            {user_message} liên quan đến mật độ dân số thì đơn vị là người/km\u00B2, \
+            {user_message} liên quan đến dân số thì đơn vị là người và lấy số liệu từ mật độ dân số và diện tích để ra kết quả, \
+            kết quả này chỉ là khoảng ước chừng chứ không chắc chắn 100%. \
+        Nếu không có thông tin thì trả lời: 'Thông tin đang được cập nhật, vui lòng xem chi tiết tại: [Trang thông tin Cần Thơ]', \
+            không được đưa ra thông tin sai"
+    
+    bot_response = rag.generate_content(combined_information)
+    response_text = bot_response.text
 
-def process_message(message):
-    # Đây là logic xử lý tin nhắn (thay thế bằng AI hoặc rule-based bot)
-    if "hello" in message.lower():
-        return "Hi! How can I help you today?"
-    elif "how are you" in message.lower():
-        return "I'm just a bot, but I'm doing fine! How about you?"
-    else:
-        return "Sorry, I didn't understand that."
+    get_knowledge = rag.vector_search(user_message)
+    first_result = get_knowledge[0] if get_knowledge else None
+
+    # Kiểm tra câu hỏi của người dùng có liên quan đến địa điểm hay không
+    location_keywords = [
+        "địa danh"
+        "địa điểm",
+        "thú vị",
+        "đặc sắc",
+        "nổi bật",
+        "nơi nổi bật",
+        "tham quan",
+        "điểm tham quan",
+        "điểm đến",
+        "du lịch",
+        "chơi",
+        "tham quan du lịch",
+        "điểm du lịch",
+        "cảnh đẹp",
+        "điểm đến lý tưởng",
+        "danh lam thắng cảnh",
+        "danh thắng",
+        "địa điểm tham quan",
+        "có gì hot",
+        "vui"
+        "độc đáo",
+        "hấp dẫn",
+        "đặc biệt",
+        "thơ mộng",
+        "vẻ vang",
+        "hùng vĩ"
+    ]
+
+    is_location_query = any(keyword in user_message.lower() for keyword in location_keywords)
+
+    locations_with_images = []
+    if is_location_query and first_result and first_result["dia_diem_hinh_anh"]:
+        valid_entries = [
+                            item for item in first_result["dia_diem_hinh_anh"]
+                            if item["dia_diem"].lower() != 'nan' and item["hinh_anh"].lower() != 'nan'
+                        ]
+        if valid_entries:
+            locations_with_images = [{"dia_diem": [item["dia_diem"] for item in valid_entries], 
+                                      "hinh_anh": [item["hinh_anh"] for item in valid_entries]}]
+
+    return jsonify({"response": response_text, "locations": locations_with_images})
+
+#--------------------------------------------------------------------------------------#
+import speech_recognition as sr
+import pyttsx3
+
+@app.route('/text-to-speech', methods=['POST'])
+def text_to_speech():
+    text = request.json.get("text")
+    if not text:
+        return jsonify({"error": "No text provided."})
+
+    engine = pyttsx3.init()
+    rate = engine.getProperty('rate')
+    engine.setProperty('rate', rate-50) # Tốc độ nói
+    voices = engine.getProperty('voices')
+    engine.setProperty('voice', voices[1].id)
+    
+    output_file = 'chatbot/output.mp3'
+    engine.save_to_file(text, output_file)
+    engine.runAndWait()
+    
+    return send_file(output_file, as_attachment=True)
+
+@app.route('/speech-to-text', methods=['POST'])
+def speech_to_text():
+    recognizer = sr.Recognizer()
+    audio_data = request.files['audio_data']
+    with sr.AudioFile(audio_data) as source:
+        audio = recognizer.record(source)
+        try:
+            text = recognizer.recognize_google(audio, language='vi-VN')
+            return jsonify({'text': text})
+        except sr.UnknownValueError:
+            return jsonify({'text': 'Không nhận diện được âm thanh.'})
+        except sr.RequestError as e:
+            return jsonify({'text': f'Error: {e}'})
+    return jsonify({'text': 'Lỗi xử lý âm thanh.'})
 
 #------------------------------------------#####---------------------------------------#
 

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-11-05 15:26+0700\n"
+"POT-Creation-Date: 2024-11-30 00:21+0700\n"
 "PO-Revision-Date: 2024-10-15 01:48+0700\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: de\n"
@@ -18,132 +18,162 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.16.0\n"
 
-#: app.py:130
+#: app.py:147
 msgid "Please upload an image before submitting."
 msgstr "Bitte laden Sie vor dem Absenden ein Bild hoch."
 
-#: app.py:131
+#: app.py:148
 msgid "Do you want to upload the image?"
 msgstr "Möchten Sie das Bild hochladen?"
 
-#: app.py:132
+#: app.py:149
 msgid "Something was wrong."
 msgstr "Irgendetwas stimmte nicht."
 
-#: app.py:200
+#: app.py:183
 msgid "Image cannot be found"
 msgstr "Bild kann nicht gefunden werden"
 
-#: app.py:212
+#: app.py:196
 msgid "No masks detected, try again!"
 msgstr "Keine Masken erkannt, versuchen Sie es erneut!"
 
-#: templates/contacts.html:3
-msgid "Contact"
-msgstr "Kontakte"
+#: templates/404.html:3 templates/redirect_with_alert.html:3
+msgid "Error"
+msgstr "Fehler"
 
-#: templates/contacts.html:27
-msgid "Can Tho University Zone II"
-msgstr "Universität Can Tho, Zone II"
+#: templates/404.html:17
+msgid "Something's missing."
+msgstr "Irgendetwas stimmte nicht."
 
-#: templates/contacts.html:27
-msgid "Đ. 3/2, Xuan Khanh, Ninh Kieu, Can Tho"
-msgstr "Đ. 3/2, Xuan Khanh, Ninh Kieu, Can Tho"
+#: templates/404.html:20
+msgid "Sorry, we can't find that page. You'll find lots to explore on the home page."
+msgstr "Leider können wir diese Seite nicht finden. Auf der Startseite gibt es viel zu entdecken."
 
-#: templates/contacts.html:33
-msgid "School of Information and Communication Technology"
-msgstr "Schule für Informations- und Kommunikationstechnologie"
-
-#: templates/layout.html:6
-msgid "Polygon Detecting"
-msgstr "Polygon-Erkennung"
-
-#: templates/redirect_with_alert.html:5
-msgid "Alert"
-msgstr "Benachrichtigung"
+#: templates/404.html:25
+msgid "Back to Homepage"
+msgstr "Zurück zur Startseite"
 
 #: templates/components/footer.html:5
 msgid "All Rights Reserved"
-msgstr ". Alle Rechte vorbehalten."
+msgstr "Alle Rechte vorbehalten."
 
-#: templates/components/nav.html:67
-msgid "Open main menu"
-msgstr "Hauptmenü öffnen"
-
-#: templates/components/nav.html:113
+#: templates/components/nav.html:87
 msgid "Home"
 msgstr "Startseite"
 
-#: templates/components/nav.html:138
+#: templates/components/nav.html:99
 msgid "Contacts"
 msgstr "Kontakte"
 
-#: templates/imgDetect/ImageWasDetected.html:3
+#: templates/mapDetect/MapWasDetected.html:3
 msgid "Polygon Detect Successful"
-msgstr "Polygon-Erkennung"
+msgstr "Polygonerkennung erfolgreich"
 
-#: templates/imgDetect/ImageWasDetected.html:9
+#: templates/mapDetect/MapWasDetected.html:7
 msgid "Image Has Been Recognized"
 msgstr "Bild wurde erkannt"
 
-#: templates/imgDetect/ImageWasDetected.html:33
-msgid "Download ZIP"
-msgstr "ZIP herunterladen"
-
-#: templates/imgDetect/ImageWasDetected.html:40
+#: templates/mapDetect/MapWasDetected.html:16
 msgid "You can download 1 or more image"
 msgstr "Sie können 1 oder mehrere Bilder herunterladen"
 
-#: templates/imgDetect/ImageWasDetected.html:60
+#: templates/mapDetect/MapWasDetected.html:23
+msgid "Original Image"
+msgstr "Originalbild"
+
+#: templates/mapDetect/MapWasDetected.html:24
+msgid "Detected Polygons"
+msgstr "Erkannte Polygone"
+
+#: templates/mapDetect/MapWasDetected.html:35
+msgid "Original Area:"
+msgstr "Ursprünglicher Bereich:"
+
+#: templates/mapDetect/MapWasDetected.html:36
 msgid "Number of detected images:"
 msgstr "Anzahl der erkannten Bilder:"
 
-#: templates/imgDetect/ImageWasDetected.html:81
+#: templates/mapDetect/MapWasDetected.html:37
+msgid "Total Area of Polygons:"
+msgstr "Gesamtfläche der Polygone:"
+
+#: templates/mapDetect/MapWasDetected.html:38
+msgid "Total Percentage of Polygons:"
+msgstr "Gesamtprozentsatz der Polygone:"
+
+#: templates/mapDetect/MapWasDetected.html:61
+msgid "Download ZIP"
+msgstr "ZIP herunterladen"
+
+#: templates/mapDetect/MapWasDetected.html:71
 msgid "No detected images available"
 msgstr "Keine erkannten Bilder verfügbar"
 
-#: templates/imgDetect/imgInput.html:3
-msgid "Input Image"
-msgstr "Eingabebild"
+#: templates/mapDetect/mapInput.html:3
+msgid "Detect polygons on map"
+msgstr "Polygone auf der Karte erkennen"
 
-#: templates/imgDetect/imgInput.html:10
-msgid "Detecting With Image"
-msgstr "Erkennung mit Bild"
+#: templates/mapDetect/mapInput.html:10
+msgid "Detecting With Map"
+msgstr "Erkennen mit Karte"
 
-#: templates/imgDetect/imgInput.html:26
+#: templates/mapDetect/mapInput.html:27
 msgid "Enter a location"
 msgstr "Geben Sie einen Ort ein"
 
-#: templates/imgDetect/imgInput.html:33
+#: templates/mapDetect/mapInput.html:34
 msgid "Search"
 msgstr "Suchen"
 
-#: templates/imgDetect/imgInput.html:71
+#: templates/mapDetect/mapInput.html:77
 msgid "INPUT YOUR IMAGE"
 msgstr "LADEN SIE IHR BILD HOCH"
 
-#: templates/imgDetect/imgInput.html:85
+#: templates/mapDetect/mapInput.html:91
 msgid "Click Here"
 msgstr "Hier klicken"
 
-#: templates/imgDetect/imgInput.html:106
+#: templates/mapDetect/mapInput.html:96
+msgid "You can paste an image from your clipboard!"
+msgstr "Sie können ein Bild aus Ihrer Zwischenablage einfügen!"
+
+#: templates/mapDetect/mapInput.html:118
 msgid "Upload another image"
 msgstr "Laden Sie ein weiteres Bild hoch"
 
-#: templates/imgDetect/imgInput.html:117
+#: templates/mapDetect/mapInput.html:129
 msgid "Loading..."
 msgstr "Laden..."
 
-#: templates/imgDetect/imgInput.html:119
+#: templates/mapDetect/mapInput.html:131
 msgid "Submit"
 msgstr "Einreichen"
 
-#~ msgid "Detecting With Map"
-#~ msgstr "Erkennung mit Karte"
+#: templates/otherpages/contacts.html:3
+msgid "Contact"
+msgstr "Kontakte"
 
-#~ msgid "Take a photo"
-#~ msgstr "Foto aufnehmen"
+#: templates/otherpages/contacts.html:26
+msgid "Can Tho University Zone II"
+msgstr "Universität Can Tho, Zone II"
 
-#~ msgid "Map"
-#~ msgstr "Karte"
+#: templates/otherpages/contacts.html:26
+msgid "Đ. 3/2, Xuan Khanh, Ninh Kieu, Can Tho"
+msgstr "Đ. 3/2, Xuan Khanh, Ninh Kieu, Can Tho"
 
+#: templates/otherpages/contacts.html:32
+msgid "School of Information and Communication Technology"
+msgstr "Schule für Informations- und Kommunikationstechnologie"
+
+#: templates/otherpages/qawb.html:10
+msgid "Vietnamese Chatbot supports Can Tho location"
+msgstr "Vietnamesischer Chatbot unterstützt Standort Can Tho"
+
+#: templates/otherpages/qawb.html:16
+msgid "Type a message..."
+msgstr "Geben Sie eine Nachricht ein..."
+
+#: templates/otherpages/qawb.html:23
+msgid "Send"
+msgstr "Schicken"
