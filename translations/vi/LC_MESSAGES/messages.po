@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-11-30 00:21+0700\n"
+"POT-Creation-Date: 2024-12-05 00:15+0700\n"
 "PO-Revision-Date: 2024-10-15 00:10+0700\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: vi\n"
@@ -18,23 +18,23 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.16.0\n"
 
-#: app.py:147
+#: app.py:147 app.py:178
 msgid "Please upload an image before submitting."
 msgstr "Vui lòng tải lên một hình ảnh trước khi gửi."
 
-#: app.py:148
+#: app.py:148 app.py:179
 msgid "Do you want to upload the image?"
 msgstr "Bạn muốn tải ảnh lên không?"
 
-#: app.py:149
-msgid "Something was wrong."
-msgstr "Có gì đó không đúng."
+#: app.py:149 app.py:180
+msgid "Only files in .jpeg, .jpg and .png formats are allowed!"
+msgstr "Chỉ cho phép các tệp có định dạng .jpeg, .jpg và .png!"
 
-#: app.py:183
+#: app.py:193
 msgid "Image cannot be found"
 msgstr "Hình ảnh không được tìm thấy"
 
-#: app.py:196
+#: app.py:206
 msgid "No masks detected, try again!"
 msgstr "Không phát hiện thấy mặt nạ nào, hãy thử lại!"
 
@@ -58,11 +58,11 @@ msgstr "Quay lại trang chủ"
 msgid "All Rights Reserved"
 msgstr "Mọi bản quyền được bảo lưu"
 
-#: templates/components/nav.html:87
+#: templates/components/nav.html:86
 msgid "Home"
 msgstr "Trang chủ"
 
-#: templates/components/nav.html:99
+#: templates/components/nav.html:98
 msgid "Contacts"
 msgstr "Liên lạc"
 
@@ -80,7 +80,7 @@ msgstr "Bạn có thể tải 1 hoặc nhiều ảnh"
 
 #: templates/mapDetect/MapWasDetected.html:23
 msgid "Original Image"
-msgstr "Thêm Ảnh Đầu Vào"
+msgstr "Ảnh Gốc"
 
 #: templates/mapDetect/MapWasDetected.html:24
 msgid "Detected Polygons"
@@ -92,7 +92,7 @@ msgstr "Diện tích ban đầu:"
 
 #: templates/mapDetect/MapWasDetected.html:36
 msgid "Number of detected images:"
-msgstr "Số hình ảnh được phát hiện:"
+msgstr "Số đa giác được phát hiện:"
 
 #: templates/mapDetect/MapWasDetected.html:37
 msgid "Total Area of Polygons:"
@@ -150,6 +150,18 @@ msgstr "Đang tải..."
 msgid "Submit"
 msgstr "Gửi"
 
+#: templates/otherpages/chatbot.html:10
+msgid "Vietnamese Chatbot supports Can Tho location"
+msgstr "Chatbot tiếng Việt hỗ trợ địa điểm Cần Thơ"
+
+#: templates/otherpages/chatbot.html:16
+msgid "Type a message..."
+msgstr "Nhập tin nhắn..."
+
+#: templates/otherpages/chatbot.html:23
+msgid "Send"
+msgstr "Gửi"
+
 #: templates/otherpages/contacts.html:3
 msgid "Contact"
 msgstr "Liên lạc"
@@ -165,15 +177,3 @@ msgstr "Đ. 3/2, Xuân Khánh, Ninh Kiều, Cần Thơ"
 #: templates/otherpages/contacts.html:32
 msgid "School of Information and Communication Technology"
 msgstr "Trường Công Nghệ Thông Tin Và Truyền Thông"
-
-#: templates/otherpages/qawb.html:10
-msgid "Vietnamese Chatbot supports Can Tho location"
-msgstr "Chatbot tiếng Việt hỗ trợ địa điểm Cần Thơ"
-
-#: templates/otherpages/qawb.html:16
-msgid "Type a message..."
-msgstr "Nhập tin nhắn..."
-
-#: templates/otherpages/qawb.html:23
-msgid "Send"
-msgstr "Gửi"

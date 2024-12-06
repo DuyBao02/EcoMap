@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-11-30 00:21+0700\n"
+"POT-Creation-Date: 2024-12-05 00:15+0700\n"
 "PO-Revision-Date: 2024-10-15 00:10+0700\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: en\n"
@@ -18,23 +18,23 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.16.0\n"
 
-#: app.py:147
+#: app.py:147 app.py:178
 msgid "Please upload an image before submitting."
 msgstr "Please upload an image before submitting."
 
-#: app.py:148
+#: app.py:148 app.py:179
 msgid "Do you want to upload the image?"
 msgstr "Do you want to upload the image?"
 
-#: app.py:149
-msgid "Something was wrong."
-msgstr "Something was wrong."
+#: app.py:149 app.py:180
+msgid "Only files in .jpeg, .jpg and .png formats are allowed!"
+msgstr "Only files in .jpeg, .jpg and .png formats are allowed!"
 
-#: app.py:183
+#: app.py:193
 msgid "Image cannot be found"
 msgstr "Image cannot be found"
 
-#: app.py:196
+#: app.py:206
 msgid "No masks detected, try again!"
 msgstr "No masks detected, try again!"
 
@@ -58,11 +58,11 @@ msgstr "Back to Homepage"
 msgid "All Rights Reserved"
 msgstr "All Rights Reserved"
 
-#: templates/components/nav.html:87
+#: templates/components/nav.html:86
 msgid "Home"
 msgstr "Home"
 
-#: templates/components/nav.html:99
+#: templates/components/nav.html:98
 msgid "Contacts"
 msgstr "Contacts"
 
@@ -80,7 +80,7 @@ msgstr "You can download 1 or more image"
 
 #: templates/mapDetect/MapWasDetected.html:23
 msgid "Original Image"
-msgstr "Input Image"
+msgstr "Original Image"
 
 #: templates/mapDetect/MapWasDetected.html:24
 msgid "Detected Polygons"
@@ -150,6 +150,18 @@ msgstr "Loading..."
 msgid "Submit"
 msgstr "Submit"
 
+#: templates/otherpages/chatbot.html:10
+msgid "Vietnamese Chatbot supports Can Tho location"
+msgstr "Vietnamese Chatbot support Can Tho location"
+
+#: templates/otherpages/chatbot.html:16
+msgid "Type a message..."
+msgstr "Type a message..."
+
+#: templates/otherpages/chatbot.html:23
+msgid "Send"
+msgstr "Send"
+
 #: templates/otherpages/contacts.html:3
 msgid "Contact"
 msgstr "Contacts"
@@ -165,17 +177,3 @@ msgstr "Đ. 3/2, Xuan Khanh, Ninh Kieu, Can Tho"
 #: templates/otherpages/contacts.html:32
 msgid "School of Information and Communication Technology"
 msgstr "School of Information and Communication Technology"
-
-#: templates/otherpages/qawb.html:10
-#, fuzzy
-msgid "Vietnamese Chatbot supports Can Tho location"
-msgstr "Vietnamese Chatbot support Can Tho location"
-
-#: templates/otherpages/qawb.html:16
-msgid "Type a message..."
-msgstr "Type a message..."
-
-#: templates/otherpages/qawb.html:23
-msgid "Send"
-msgstr "Send"
-

@@ -6,7 +6,7 @@ import numpy as np
 
 def run_detection(input_image_path, output_dir):
     # Load model
-    model = YOLO("model/weights/best.pt")
+    model = YOLO("model/weights/11m-seg/best.pt")
     results = model(input_image_path)
 
     # Extract the image name from the input image path

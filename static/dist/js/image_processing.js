@@ -49,17 +49,25 @@ document.addEventListener("DOMContentLoaded", () => {
     // Xử lý sự kiện chọn file qua input
     fileInput.addEventListener("change", (event) => {
         const file = event.target.files[0];
+        let foundImage = false;
 
         if (file) {
-            const reader = new FileReader();
+            // Kiểm tra nếu file là ảnh (bắt đầu bằng "image/")
+            if (file.type.startsWith("image/")) {
+                foundImage = true;
+                const reader = new FileReader();
 
-            reader.onload = (e) => {
-            // Hiển thị ảnh xem trước
-            showPreview(e.target.result);
-            };
+                reader.onload = (e) => {
+                    // Hiển thị ảnh xem trước
+                    showPreview(e.target.result);
+                };
 
-            reader.readAsDataURL(file);
-        } else {
+                reader.readAsDataURL(file);
+            } else {
+                fileInput.value = ""; // Reset input file nếu không phải ảnh
+            }
+        }
+        if (!foundImage) {
             alert(alertSomethingWrong);
         }
     });

@@ -27,7 +27,7 @@ def get_locale():
     # Kiểm tra nếu người dùng đã chọn ngôn ngữ từ query string
     if 'lang' in request.args:
         lang = request.args.get('lang')
-        if lang in ['en', 'vi', 'de']:
+        if lang in ['en', 'vi']:
             session['lang'] = lang  # Lưu vào session
             return lang
     # Nếu không có ngôn ngữ trong session, trả về ngôn ngữ mặc định là 'en'
@@ -40,7 +40,7 @@ babel = Babel(app, locale_selector=get_locale)
 
 @app.route('/setlang')
 def setlang():
-    lang = request.args.get('lang', 'en')
+    lang = request.args.get('lang', 'vi')
     session['lang'] = lang
     return redirect(request.referrer)
 
@@ -146,7 +146,7 @@ def home():
 
     alert_upload_image = gettext('Please upload an image before submitting.')
     confirm_upload_image = gettext('Do you want to upload the image?')
-    alert_something_wrong = gettext('Something was wrong.')
+    alert_something_wrong = gettext('Only files in .jpeg, .jpg and .png formats are allowed!')
 
     return render_template(
         "mapDetect/mapInput.html",
@@ -174,7 +174,17 @@ def search_location():
 def map_view():
     mapsteps = session.get('mapsteps')
     url = request.args.get('url')
-    return render_template("mapDetect/mapInput.html", map_url=url, mapsteps=mapsteps)
+
+    alert_upload_image = gettext('Please upload an image before submitting.')
+    confirm_upload_image = gettext('Do you want to upload the image?')
+    alert_something_wrong = gettext('Only files in .jpeg, .jpg and .png formats are allowed!')
+
+    return render_template("mapDetect/mapInput.html", 
+                            map_url=url,
+                            alert_upload_image=alert_upload_image, 
+                            confirm_upload_image=confirm_upload_image, 
+                            alert_something_wrong=alert_something_wrong, 
+                            mapsteps=mapsteps)
 
 @app.route("/mapwasdetected", methods=["GET"])
 def MapWasDetected():
@@ -286,7 +296,7 @@ def serve_pictures(filename):
 
 @app.route("/chatwithbot")
 def chatwithbot():
-    return render_template("otherpages/qawb.html")
+    return render_template("otherpages/chatbot.html")
 
 @app.route("/webhook", methods=["POST"])
 def webhook():
@@ -296,62 +306,61 @@ def webhook():
     
     source_information = rag.enhance_prompt(user_message)
     combined_information = f"Hãy trở thành chuyên gia thông tin về các đơn vị hành chính ở Cần Thơ. \
-        Câu hỏi của người dùng: {user_message}\nTrả lời câu hỏi dựa vào các thông tin dưới đây: {source_information}. \
-        Nếu {user_message} liên quan đến mô tả, tóm tắt sơ lược hoặc lấy thông tin cơ bản thì lấy cột mo_ta ứng với đơn vị hành chính tìm được để trả lời.\
-        Nếu {user_message} liên quan đến diện tích thì đơn vị là (km\u00B2), \
-            {user_message} liên quan đến mật độ dân số thì đơn vị là người/km\u00B2, \
-            {user_message} liên quan đến dân số thì đơn vị là người và lấy số liệu từ mật độ dân số và diện tích để ra kết quả, \
-            kết quả này chỉ là khoảng ước chừng chứ không chắc chắn 100%. \
-        Nếu không có thông tin thì trả lời: 'Thông tin đang được cập nhật, vui lòng xem chi tiết tại: [Trang thông tin Cần Thơ]', \
-            không được đưa ra thông tin sai"
+            Trả lời {user_message} dựa vào các thông tin dưới đây: {source_information}. \
+            Nếu câu hỏi liên quan đến địa điểm hoặc địa danh chỉ liệt kê đúng địa danh cách nhau bởi dấu phẩy, không mô tả gì thêm, \
+        sau đó, bổ sung câu: 'Bạn có thể nhấn vào hình ảnh để tìm hiểu thêm chi tiết qua các liên kết đính kèm.'. \
+            Nếu câu hỏi liên quan đến dân số thì tính toán dựa trên diện tích và mật độ dân số, đơn vị là người, kết quả ước chừng. \
+            Nếu câu hỏi liên quan đến mô tả hoặc thông tin tổng quát, trả lời dựa trên cột mô tả. \
+            Nếu không có thông tin thì trả lời: 'Thông tin đang được cập nhật, vui lòng xem chi tiết tại: [Trang thông tin Cần Thơ]', \
+        không được đưa ra thông tin sai. \
+            Trả lời với tông giọng lịch sự, mong muốn người dùng hiểu được câu trả lời của mình."
     
     bot_response = rag.generate_content(combined_information)
     response_text = bot_response.text
 
-    get_knowledge = rag.vector_search(user_message)
+    get_knowledge = rag.vector_search(user_message) #Trả kq terminal lần 2
     first_result = get_knowledge[0] if get_knowledge else None
 
     # Kiểm tra câu hỏi của người dùng có liên quan đến địa điểm hay không
     location_keywords = [
-        "địa danh"
+        "địa danh",
         "địa điểm",
-        "thú vị",
-        "đặc sắc",
-        "nổi bật",
-        "nơi nổi bật",
         "tham quan",
         "điểm tham quan",
         "điểm đến",
         "du lịch",
-        "chơi",
-        "tham quan du lịch",
-        "điểm du lịch",
         "cảnh đẹp",
-        "điểm đến lý tưởng",
         "danh lam thắng cảnh",
         "danh thắng",
         "địa điểm tham quan",
-        "có gì hot",
-        "vui"
+        "điểm du lịch",
+        "điểm đến lý tưởng",
+        "nổi bật",
+        "đặc biệt",
         "độc đáo",
         "hấp dẫn",
-        "đặc biệt",
-        "thơ mộng",
-        "vẻ vang",
-        "hùng vĩ"
+        "có gì",
+        "có biết",
+        "thú vị",
+        "vui",
+        "biết gì"
     ]
 
     is_location_query = any(keyword in user_message.lower() for keyword in location_keywords)
 
     locations_with_images = []
-    if is_location_query and first_result and first_result["dia_diem_hinh_anh"]:
+    if is_location_query and first_result and first_result["dia_diem_hinh_anh_link"]:
         valid_entries = [
-                            item for item in first_result["dia_diem_hinh_anh"]
-                            if item["dia_diem"].lower() != 'nan' and item["hinh_anh"].lower() != 'nan'
+                            item for item in first_result["dia_diem_hinh_anh_link"]
+                            if item["dia_diem"].lower() != 'nan' and item["hinh_anh"].lower() != 'nan' and item["link"].lower() != "nan"
                         ]
         if valid_entries:
             locations_with_images = [{"dia_diem": [item["dia_diem"] for item in valid_entries], 
-                                      "hinh_anh": [item["hinh_anh"] for item in valid_entries]}]
+                                      "hinh_anh": [item["hinh_anh"] for item in valid_entries],
+                                      "link": [item["link"] for item in valid_entries]}]
+    
+    print(50*('-'))
+    print("Phản hồi cuối:", response_text)
 
     return jsonify({"response": response_text, "locations": locations_with_images})
 
