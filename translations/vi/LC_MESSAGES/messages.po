@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-12-05 00:15+0700\n"
+"POT-Creation-Date: 2024-12-08 23:04+0700\n"
 "PO-Revision-Date: 2024-10-15 00:10+0700\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: vi\n"
@@ -62,7 +62,7 @@ msgstr "Mọi bản quyền được bảo lưu"
 msgid "Home"
 msgstr "Trang chủ"
 
-#: templates/components/nav.html:98
+#: templates/components/nav.html:104
 msgid "Contacts"
 msgstr "Liên lạc"
 
@@ -177,3 +177,91 @@ msgstr "Đ. 3/2, Xuân Khánh, Ninh Kiều, Cần Thơ"
 #: templates/otherpages/contacts.html:32
 msgid "School of Information and Communication Technology"
 msgstr "Trường Công Nghệ Thông Tin Và Truyền Thông"
+
+#: templates/otherpages/q7a.html:8
+msgid "Frequently Asked Questions"
+msgstr "Câu Hỏi Thường Gặp"
+
+#: templates/otherpages/q7a.html:15
+msgid "What's EcoMap?"
+msgstr "EcoMap là gì?"
+
+#: templates/otherpages/q7a.html:16
+msgid "EcoMap is a system that helps identify and analyze buildings from satellite images and provides administrative information such as population, area, or tourist attractions through an integrated chatbot."
+msgstr "EcoMap là hệ thống giúp nhận dạng và phân tích các tòa nhà từ hình ảnh vệ tinh và cung cấp thông tin hành chính như dân số, diện tích hoặc điểm tham quan du lịch thông qua chatbot tích hợp."
+
+#: templates/otherpages/q7a.html:20
+msgid "How to upload and analyze images?"
+msgstr "Làm thế nào để tải lên và phân tích ảnh?"
+
+#: templates/otherpages/q7a.html:21
+msgid "There are 2 ways for you to do this:"
+msgstr "Có 2 cách để bạn thực hiện:"
+
+#: templates/otherpages/q7a.html:23
+msgid "You can find the location you want to analyze on the integrated map, take a photo with a computer tool. Then paste the photo below for the system to analyze."
+msgstr "Bạn có thể tìm vị trí cần phân tích trên bản đồ tích hợp, chụp ảnh bằng công cụ máy tính. Sau đó dán ảnh bên dưới để hệ thống phân tích."
+
+#: templates/otherpages/q7a.html:24
+msgid "If you already have a photo, you can upload it using the 'Click here' button or paste the photo from the clipboard into the interface. Then press the 'Send' button for the system to identify and provide information."
+msgstr "Nếu bạn đã có ảnh, bạn có thể tải ảnh lên bằng cách sử dụng nút 'Nhấp vào đây' hoặc dán ảnh từ bảng tạm vào giao diện. Sau đó nhấn nút 'Gửi' để hệ thống nhận dạng và cung cấp thông tin."
+
+#: templates/otherpages/q7a.html:30
+msgid "Is the accuracy of identification and analysis high?"
+msgstr "Độ chính xác của việc nhận dạng và phân tích có cao không?"
+
+#: templates/otherpages/q7a.html:31
+msgid "Because the analysis and identification are trained by us on the YOLOv11m-seg model, and because the training dataset only focuses on analyzing sparse, less obscured house segments. So you need to find areas with suitable conditions for the system to analyze accurately."
+msgstr "Vì phân tích và nhận dạng được chúng tôi đào tạo trên mô hình YOLOv11m-seg và vì tập dữ liệu đào tạo chỉ tập trung vào việc phân tích các phân đoạn nhà thưa thớt, ít bị che khuất. Vì vậy, bạn cần tìm các khu vực có điều kiện phù hợp để hệ thống phân tích chính xác."
+
+#: templates/otherpages/q7a.html:32
+msgid "Note that the zoom size of the image also affects the analysis results."
+msgstr "Lưu ý, kích thước thu phóng của ảnh cũng ảnh hưởng đến kết quả phân tích."
+
+#: templates/otherpages/q7a.html:36
+msgid "Where are the satellite image analysis results stored?"
+msgstr "Kết quả phân tích ảnh vệ tinh được lưu ở đâu?"
+
+#: templates/otherpages/q7a.html:37
+msgid "The recognition and analysis results will be viewed directly on the website, you can download the results to your computer."
+msgstr "Kết quả nhận dạng và phân tích sẽ được xem trực tiếp trên website, bạn có thể tải kết quả về máy."
+
+#: templates/otherpages/q7a.html:41
+msgid "How does the chatbot work?"
+msgstr "Chatbot hoạt động như thế nào?"
+
+#: templates/otherpages/q7a.html:42
+msgid "The chatbot uses artificial intelligence to answer questions related to administrative information in Can Tho city. You can type in a question or use your voice to ask for information."
+msgstr "Chatbot sử dụng trí tuệ nhân tạo để trả lời các câu hỏi liên quan đến thông tin hành chính tại thành phố Cần Thơ. Bạn có thể nhập câu hỏi hoặc sử dụng giọng nói để yêu cầu thông tin."
+
+#: templates/otherpages/q7a.html:46
+msgid "What can I ask the chatbot?"
+msgstr "Tôi có thể hỏi chatbot những gì?"
+
+#: templates/otherpages/q7a.html:47
+msgid "You can ask about:"
+msgstr "Bạn có thể hỏi về:"
+
+#: templates/otherpages/q7a.html:49
+msgid "Population in districts."
+msgstr "Dân số theo quận."
+
+#: templates/otherpages/q7a.html:50
+msgid "Area of an area."
+msgstr "Diện tích của một khu vực."
+
+#: templates/otherpages/q7a.html:51
+msgid "Notable tourist attractions."
+msgstr "Các điểm tham quan du lịch nổi tiếng."
+
+#: templates/otherpages/q7a.html:52
+msgid "Population density ratio in a specific area."
+msgstr "Tỷ lệ mật độ dân cư tại một khu vực cụ thể."
+
+#: templates/otherpages/q7a.html:57
+msgid "How to report errors or suggestions?"
+msgstr "Làm thế nào để báo lỗi hoặc góp ý?"
+
+#: templates/otherpages/q7a.html:58
+msgid "If you encounter errors or have suggestions, please use the 'Contact' page or send an email to"
+msgstr "Nếu bạn gặp lỗi hoặc có góp ý, vui lòng sử dụng trang 'Liên hệ' hoặc gửi email tới "

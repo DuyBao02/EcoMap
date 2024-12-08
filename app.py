@@ -17,7 +17,7 @@ app.jinja_env.filters['zip'] = jinja2_zip
 #Language config
 babel = Babel(app)
 app.config['SECRET_KEY'] = '604ab4ed4ab64b1b19449696'
-app.config['BABEL_DEFAULT_LOCALE'] = 'vi'
+app.config['BABEL_DEFAULT_LOCALE'] = 'en'
 app.config['BABEL_TRANSLATION_DIRECTORIES'] = './translations'
 
 #--------------------------------------------------------------------------------------
@@ -402,6 +402,10 @@ def speech_to_text():
     return jsonify({'text': 'Lỗi xử lý âm thanh.'})
 
 #------------------------------------------#####---------------------------------------#
+
+@app.route("/faq")
+def faq():
+    return render_template("otherpages/faq.html")
 
 @app.route("/contacts")
 def contacts():

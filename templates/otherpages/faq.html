@@ -1,0 +1,62 @@
+{% extends "layout.html" %}
+
+{% block title %}FAQ{% endblock %}
+
+{% block content %}
+
+    <div class="justify-center text-4xl font-semibold flex dark:text-white items-center my-8">
+      {{ _('Frequently Asked Questions') }}
+    </div>
+
+    <div class="container mx-auto px-4 py-6 item-center justify-center max-w-screen-lg">
+
+        <div class="bg-gray-500 dark:bg-white rounded-lg shadow p-6">
+            <div class="mb-6 text-white dark:text-black">
+                <h3 class="text-lg font-bold">1. {{ _("What's EcoMap?") }}</h3>
+                <p class="mt-2">{{ _("EcoMap is a system that helps identify and analyze buildings from satellite images and provides administrative information such as population, area, or tourist attractions through an integrated chatbot.") }}</p>
+            </div>
+
+            <div class="mb-6 text-white dark:text-black">
+                <h3 class="text-lg font-bold">2. {{ _("How to upload and analyze images?") }}</h3>
+                <p class="mt-2">{{ _("There are 2 ways for you to do this:") }}</p>
+                <ul class="list-disc list-inside">
+                    <li>{{ _("You can find the location you want to analyze on the integrated map, take a photo with a computer tool. Then paste the photo below for the system to analyze.") }}</li>
+                    <li>{{ _("If you already have a photo, you can upload it using the 'Click here' button or paste the photo from the clipboard into the interface. Then press the 'Send' button for the system to identify and provide information.") }}</li>
+                </ul>
+                <p class="mt-2"></p>
+            </div>
+
+            <div class="mb-6 text-white dark:text-black">
+                <h3 class="text-lg font-bold">3. {{ _("Is the accuracy of identification and analysis high?") }}</h3>
+                <p class="mt-2">{{ _("Because the analysis and identification are trained by us on the YOLOv11m-seg model, and because the training dataset only focuses on analyzing sparse, less obscured house segments. So you need to find areas with suitable conditions for the system to analyze accurately.") }}</br>
+                    {{ _("Note that the zoom size of the image also affects the analysis results.") }}</p>
+            </div>
+
+            <div class="mb-6 text-white dark:text-black">
+                <h3 class="text-lg font-bold">4. {{ _("Where are the satellite image analysis results stored?") }}</h3>
+                <p class="mt-2">{{ _("The recognition and analysis results will be viewed directly on the website, you can download the results to your computer.") }}</p>
+            </div>
+
+            <div class="mb-6 text-white dark:text-black">
+                <h3 class="text-lg font-bold">5. {{ _("How does the chatbot work?") }}</h3>
+                <p class="mt-2">{{ _("The chatbot uses artificial intelligence to answer questions related to administrative information in Can Tho city. You can type in a question or use your voice to ask for information.") }}</p>
+            </div>
+
+            <div class="mb-6 text-white dark:text-black">
+                <h3 class="text-lg font-bold">6. {{ _("What can I ask the chatbot?") }}</h3>
+                <p class="mt-2">{{ _("You can ask about:") }}</p>
+                <ul class="list-disc list-inside">
+                    <li>{{ _("Population in districts.") }}</li>
+                    <li>{{ _("Area of an area.") }}</li>
+                    <li>{{ _("Notable tourist attractions.") }}</li>
+                    <li>{{ _("Population density ratio in a specific area.") }}</li>
+                </ul>
+            </div>
+
+            <div class="mb-6 text-white dark:text-black">
+                <h3 class="text-lg font-bold">7. {{ _("How to report errors or suggestions?") }}</h3>
+                <p class="mt-2">{{ _("If you encounter errors or have suggestions, please use the 'Contact' page or send an email to") }}<a href="mailto:support@ecomap.com" class="text-black dark:text-blue-500 underline">support@ecomap.com</a>.</p>
+            </div>
+        </div>
+    </div>
+{% endblock %}

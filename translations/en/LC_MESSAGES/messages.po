@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-12-05 00:15+0700\n"
+"POT-Creation-Date: 2024-12-08 23:04+0700\n"
 "PO-Revision-Date: 2024-10-15 00:10+0700\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: en\n"
@@ -62,7 +62,7 @@ msgstr "All Rights Reserved"
 msgid "Home"
 msgstr "Home"
 
-#: templates/components/nav.html:98
+#: templates/components/nav.html:104
 msgid "Contacts"
 msgstr "Contacts"
 
@@ -177,3 +177,92 @@ msgstr "Đ. 3/2, Xuan Khanh, Ninh Kieu, Can Tho"
 #: templates/otherpages/contacts.html:32
 msgid "School of Information and Communication Technology"
 msgstr "School of Information and Communication Technology"
+
+#: templates/otherpages/q7a.html:8
+msgid "Frequently Asked Questions"
+msgstr "Frequently Asked Questions"
+
+#: templates/otherpages/q7a.html:15
+msgid "What's EcoMap?"
+msgstr "What's EcoMap?"
+
+#: templates/otherpages/q7a.html:16
+msgid "EcoMap is a system that helps identify and analyze buildings from satellite images and provides administrative information such as population, area, or tourist attractions through an integrated chatbot."
+msgstr "EcoMap is a system that helps identify and analyze buildings from satellite images and provides administrative information such as population, area, or tourist attractions through an integrated chatbot."
+
+#: templates/otherpages/q7a.html:20
+msgid "How to upload and analyze images?"
+msgstr "How to upload and analyze images?"
+
+#: templates/otherpages/q7a.html:21
+msgid "There are 2 ways for you to do this:"
+msgstr "There are 2 ways for you to do this:"
+
+#: templates/otherpages/q7a.html:23
+msgid "You can find the location you want to analyze on the integrated map, take a photo with a computer tool. Then paste the photo below for the system to analyze."
+msgstr "You can find the location you want to analyze on the integrated map, take a photo with a computer tool. Then paste the photo below for the system to analyze."
+
+#: templates/otherpages/q7a.html:24
+msgid "If you already have a photo, you can upload it using the 'Click here' button or paste the photo from the clipboard into the interface. Then press the 'Send' button for the system to identify and provide information."
+msgstr "If you already have a photo, you can upload it using the 'Click here' button or paste the photo from the clipboard into the interface. Then press the 'Send' button for the system to identify and provide information."
+
+#: templates/otherpages/q7a.html:30
+msgid "Is the accuracy of identification and analysis high?"
+msgstr "Is the accuracy of identification and analysis high?"
+
+#: templates/otherpages/q7a.html:31
+msgid "Because the analysis and identification are trained by us on the YOLOv11m-seg model, and because the training dataset only focuses on analyzing sparse, less obscured house segments. So you need to find areas with suitable conditions for the system to analyze accurately."
+msgstr "Because the analysis and identification are trained by us on the YOLOv11m-seg model, and because the training dataset only focuses on analyzing sparse, less obscured house segments. So you need to find areas with suitable conditions for the system to analyze accurately."
+
+#: templates/otherpages/q7a.html:32
+msgid "Note that the zoom size of the image also affects the analysis results."
+msgstr "Note that the zoom size of the image also affects the analysis results."
+
+#: templates/otherpages/q7a.html:36
+msgid "Where are the satellite image analysis results stored?"
+msgstr "Where are the satellite image analysis results stored?"
+
+#: templates/otherpages/q7a.html:37
+msgid "The recognition and analysis results will be viewed directly on the website, you can download the results to your computer."
+msgstr "The recognition and analysis results will be viewed directly on the website, you can download the results to your computer."
+
+#: templates/otherpages/q7a.html:41
+msgid "How does the chatbot work?"
+msgstr "How does the chatbot work?"
+
+#: templates/otherpages/q7a.html:42
+msgid "The chatbot uses artificial intelligence to answer questions related to administrative information in Can Tho city. You can type in a question or use your voice to ask for information."
+msgstr "The chatbot uses artificial intelligence to answer questions related to administrative information in Can Tho city. You can type in a question or use your voice to ask for information."
+
+#: templates/otherpages/q7a.html:46
+msgid "What can I ask the chatbot?"
+msgstr "What can I ask the chatbot?"
+
+#: templates/otherpages/q7a.html:47
+msgid "You can ask about:"
+msgstr "You can ask about:"
+
+#: templates/otherpages/q7a.html:49
+msgid "Population in districts."
+msgstr "Population in districts."
+
+#: templates/otherpages/q7a.html:50
+msgid "Area of an area."
+msgstr "Area of an area."
+
+#: templates/otherpages/q7a.html:51
+msgid "Notable tourist attractions."
+msgstr "Notable tourist attractions."
+
+#: templates/otherpages/q7a.html:52
+msgid "Population density ratio in a specific area."
+msgstr "Population density ratio in a specific area."
+
+#: templates/otherpages/q7a.html:57
+msgid "How to report errors or suggestions?"
+msgstr "How to report errors or suggestions?"
+
+#: templates/otherpages/q7a.html:58
+msgid "If you encounter errors or have suggestions, please use the 'Contact' page or send an email to"
+msgstr "If you encounter errors or have suggestions, please use the 'Contact' page or send an email to"
+
